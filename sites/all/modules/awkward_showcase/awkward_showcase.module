@@ -1,0 +1,773 @@
+<?php
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function awkward_showcase_ctools_plugin_api($owner, $api){
+  if ($owner == 'awkward_showcase' && $api == 'awkward_showcase_default_preset'){
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_views_api().
+ *
+ * This tells drupal that there is Views integration file named
+ * aw_showcase.views.inc
+ */
+function awkward_showcase_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function awkward_showcase_permission(){
+  return array(
+    'administer awkward_showcase' => array(
+      'title' => t('Administer the Awkward Showcase module'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme()
+ */
+function awkward_showcase_theme() {
+  return array(
+    'awkward_showcase_container' => array(
+      'variables' => array('items' => array(), 'settings' => array()),
+      'template' => 'theme/awkward_showcase-container',
+      'file' => 'theme/theme.inc',
+    ),
+  );
+}
+
+/**
+ * This function loads the required JavaScripts and settings for an Awkward Showcase instance.
+ */
+function awkward_showcase_add_js($settings) {
+  // Static array to remember which scripts are already attached.
+  $cache = &drupal_static(__FUNCTION__, array());
+
+  // Library JavaScript
+  //   Cache this filename to prevent multiple file_exists() calls.
+  if (!isset($cache['lib'])) {
+    $lib = awkward_showcase_get_library_file('awkward_showcase_lib_file');
+    if ($lib === FALSE) {
+      drupal_set_message(t('The Awkward Showcase JavaScript file was not found in its path. Please refer to README.txt for installation instructions.'), 'error');
+      return;
+    }
+    $cache['lib'] = $lib;
+  }
+
+  // Add the aw_showcase library javascript
+  drupal_add_js($cache['lib']);
+
+  // Flatten the settings array down if these settings came from the field formatter which uses the tree
+  if (isset($settings['awkward_showcase_settings'])) {
+    foreach ($settings['awkward_showcase_settings'] as $key => $setting_value) {
+      $settings[$key] = $setting_value;
+    }
+    unset($settings['awkward_showcase_settings']);
+  }
+  // Add the settings to the Drupal.settings javascript variable
+  drupal_add_js(array('awkward_showcase' => $settings), 'setting');
+
+  // Add settings JavaScript
+  drupal_add_js(drupal_get_path('module', 'awkward_showcase') . '/js/awkward_showcase.settings.js');
+}
+
+/*
+ * Returns the JavaScript file for Awkward Showcase.
+ * Uses a cached filename until this file gets deleted or the cache gets cleared.
+ */
+function awkward_showcase_get_library_file($file_name) {
+  $cache = cache_get($file_name);
+  if (($cache !== FALSE) && file_exists($cache->data))
+    return $cache->data;
+
+  // Search for library file
+  $libpath = libraries_get_path('jquery.aw-showcase');
+
+  // If this is the javascript library file we are looking for...
+  if ($file_name == 'awkward_showcase_lib_file') {
+    // Search for minimized files first.
+    // Sort the found files to use the newest version if there's more than one.
+    $js = glob($libpath . '/jquery.aw-showcase.js');
+    if ($js === FALSE || count($js) == 0)
+      $js = glob($libpath . '/jquery.aw-showcase.js');
+
+    if (count($js) > 0) {
+      rsort($js);
+      cache_set('awkward_showcase_lib_file', $js[0]);
+      return $js[0];
+    }
+    else {
+      // Could not find JavaScript library
+      return FALSE;
+    }
+  }
+  // If this is the css file we are looking for...
+  if ($file_name == 'awkward_showcase_css_file') {
+    // search for the file
+    $css = glob($libpath . '/css/style.css');
+    if ($css === FALSE || count($css) == 0)
+      $css = glob($libpath . '/css/style.css');
+
+    if (count($css) > 0) {
+      rsort($css);
+      cache_set('awkward_showcase_css_file', $css[0]);
+      return $css[0];
+    }
+    else {
+      // Could not find JavaScript library
+      return FALSE;
+    }
+  }
+
+}
+
+/**
+ * Field Formatter Stuff
+ */
+
+/**
+ * Implements hook_field_formatter_info()
+ */
+function awkward_showcase_field_formatter_info() {
+  return array(
+    'awkward_showcase' => array(
+      'label' => t('Awkward Showcase'),
+      'field types' => array('image', 'video_embed_field'),
+      'settings' => array(
+        'layout_set' => 'Normal',
+        'main_image_style' => '',
+        'pager_image_style' => '',
+        'pager_caption_fields' => '',
+        'main_caption_fields' => '',
+        'aw_showcase_settings' => array('content_width' => 700),
+        'aw_showcase_settings' => array('content_height' => 470),
+        'aw_showcase_settings' => array('fit_to_parent' => FALSE),
+        'aw_showcase_settings' => array('auto' => TRUE),
+        'aw_showcase_settings' => array('interval' => 3000),
+        'aw_showcase_settings' => array('continuous' => FALSE),
+        'aw_showcase_settings' => array('loading' => TRUE),
+        'aw_showcase_settings' => array('tooltip_width' => 200),
+        'aw_showcase_settings' => array('tooltip_icon_width' => 32),
+        'aw_showcase_settings' => array('tooltip_icon_height' => 32),
+        'aw_showcase_settings' => array('tooltip_offsetx' => 18),
+        'aw_showcase_settings' => array('tooltip_offsety' => 0),
+        'aw_showcase_settings' => array('arrows' => TRUE),
+        'aw_showcase_settings' => array('buttons' => TRUE),
+        'aw_showcase_settings' => array('btn_numbers' => TRUE),
+        'aw_showcase_settings' => array('keybord_keys' => TRUE),
+        'aw_showcase_settings' => array('mousetrace' => FALSE),
+        'aw_showcase_settings' => array('pauseonover' => TRUE),
+        'aw_showcase_settings' => array('stoponclick' => FALSE),
+        'aw_showcase_settings' => array('transition' => 'hslide'),
+        'aw_showcase_settings' => array('transition_speed' => 500),
+        'aw_showcase_settings' => array('transition_delay' => 0),
+        'aw_showcase_settings' => array('show_caption' => 'onload'),
+        'aw_showcase_settings' => array('thumbnails' => FALSE),
+        'aw_showcase_settings' => array('thumbnails_position' => 'outside-last'),
+        'aw_showcase_settings' => array('thumbnails_direction' => 'vertical'),
+        'aw_showcase_settings' => array('thumbnails_slidex' => 1),
+        'aw_showcase_settings' => array('dynamic_height' => FALSE),
+        'aw_showcase_settings' => array('speed_change' => TRUE),
+        'aw_showcase_settings' => array('viewline' => FALSE),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form()
+ * The form that is shown when the settings button on the field is clicked
+ */
+function awkward_showcase_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  //This gets the view_mode where our settings are stored
+  $display = $instance['display'][$view_mode];
+  //This gets the actual settings
+  $settings = $display['settings'];
+
+  //set the options correctly based upon the preset that has been selected
+  if ($settings['layout_set'] <> 'Custom' && isset($settings['layout_set'])) {
+    $preset_settings = awkward_showcase_get_selected_preset_values($settings['layout_set']);
+    foreach($preset_settings as $key => $value) {
+      $settings['aw_showcase_settings'][$key] = $value;
+    }
+  }
+
+  //Initialize the element variable
+  $element = array();
+  $layout_options = array('Normal' => 'Normal',
+    'Vertical thumnbails' => 'Vertical thumnbails',
+    'Horizontal thumbnails' => 'Horizontal thumbnails',
+    'Dynamic height' => 'Dynamic height',
+    'Hundred percent' => 'Hundred percent',
+    'Viewline' => 'Viewline',
+    'Custom' => 'Custom'
+  );
+  $element['layout_set'] = array(
+    '#title' => t('Layout Options'),
+    '#type' => 'select',
+    '#options' => $layout_options,
+    '#default_value' => $settings['layout_set'],
+  );
+  $image_style_options = image_style_options(FALSE);
+  $element['main_image_style'] = array(
+    '#title' => t('Main Image Style'),
+    '#type' => 'select',
+    '#options' => $image_style_options,
+    '#description' => t('Select the image style for the image that will be shown in the main display area of the showcase.'),
+    '#default_value' => $settings['main_image_style'],
+  );
+  if (module_exists('file_entity')) {
+    $element['main_caption_fields'] = array(
+      '#title' => t('Main Caption Fields'),
+      '#type' => 'textfield',
+      '#description' => t('Put the machine names of the field(s) you want to use as a caption on the main image. Separate each one with a comma. NOTE: This will only work for fields that are on the file entity for the image.'),
+      '#default_value' => $settings['main_caption_fields'],
+    );
+  }
+  $element['pager_image_style'] = array(
+    '#title' => t('Pager Image Style'),
+    '#type' => 'select',
+    '#options' => $image_style_options,
+    '#description' => t('Select the image style for the image that will be shown in the pager(thumbnail) area of the showcase.'),
+    '#default_value' => $settings['pager_image_style'],
+  );
+  if (module_exists('file_entity')) {
+    $element['pager_caption_fields'] = array(
+      '#title' => t('Pager Caption Fields'),
+      '#type' => 'textfield',
+      '#description' => t('Put the machine names of the field(s) you want to use as a caption on the pager. Separate each one with a comma. NOTE: This will only work for fields that are on the file entity for the image.'),
+      '#default_value' => $settings['pager_caption_fields'],
+    );
+  }
+  $element['aw_showcase_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Awkward Showcase Display Settings',
+    '#input' => TRUE,
+    '#states' => array(
+      'visible' => array(':input[name="fields[' . $field['field_name'] . '][settings_edit_form][settings][layout_set]"]' => array('value' => 'Custom'))
+    ),
+    '#tree' => TRUE,
+  );
+  $element['aw_showcase_settings']['content_width'] = array(
+    '#title' => t('Content Width'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['content_width'],
+    '#size' => 4,
+    '#maxlength' => 4,
+  );
+  $element['aw_showcase_settings']['content_height'] = array(
+    '#title' => t('Content Height'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['content_height'],
+    '#size' => 4,
+    '#maxlength' => 4,
+  );
+  $element['aw_showcase_settings']['fit_to_parent'] = array(
+    '#title' => t('Fit to Parent'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['fit_to_parent'],
+  );
+  $element['aw_showcase_settings']['auto'] = array(
+    '#title' => t('Auto Start on Page Load'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['auto'],
+  );
+  $element['aw_showcase_settings']['interval'] = array(
+    '#title' => t('Transition Interval'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['interval'],
+    '#size' => 6,
+    '#maxlength' => 10,
+    '#description' => t('Time (in Milliseconds) between transitions.'),
+  );
+  $element['aw_showcase_settings']['continuous'] = array(
+    '#title' => t('Continuous Rotation'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['continuous'],
+    '#description' => t('Rotate back to the first image once the last one has been shown.'),
+  );
+  $element['aw_showcase_settings']['loading'] = array(
+    '#title' => t('Loading'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['loading'],
+    '#description' => t('Show loading message.'),
+  );
+  $element['aw_showcase_settings']['tooltip_width'] = array(
+    '#title' => t('Tooltip Width'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['tooltip_width'],
+    '#size' => 5,
+    '#maxlength' => 5,
+  );
+  $element['aw_showcase_settings']['tooltip_icon_width'] = array(
+    '#title' => t('Tooltip Icon Width'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['tooltip_icon_width'],
+    '#size' => 5,
+    '#maxlength' => 5,
+  );
+  $element['aw_showcase_settings']['tooltip_icon_height'] = array(
+    '#title' => t('Tooltip Icon Height'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['tooltip_icon_height'],
+    '#size' => 5,
+    '#maxlength' => 5,
+  );
+  $element['aw_showcase_settings']['tooltip_offsetx'] = array(
+    '#title' => t('Tooltip Offset X'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['tooltip_offsetx'],
+    '#size' => 5,
+    '#maxlength' => 5,
+  );
+  $element['aw_showcase_settings']['tooltip_offsety'] = array(
+    '#title' => t('Tooltip Offset Y'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['tooltip_offsety'],
+    '#size' => 5,
+    '#maxlength' => 5,
+  );
+  $element['aw_showcase_settings']['arrows'] = array(
+    '#title' => t('Display left and Right arrows'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['arrows'],
+  );
+  $element['aw_showcase_settings']['buttons'] = array(
+    '#title' => t('Display Buttons'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['buttons'],
+  );
+  $element['aw_showcase_settings']['btn_numbers'] = array(
+    '#title' => t('Display Buttons Numbers'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['btn_numbers'],
+  );
+  $element['aw_showcase_settings']['keybord_keys'] = array(
+    '#title' => t('Enable Keyboard Shortcuts'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['keybord_keys'],
+  );
+  $element['aw_showcase_settings']['mousetrace'] = array(
+    '#title' => t('Mousetrace'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['mousetrace'],
+  );
+  $element['aw_showcase_settings']['pauseonover'] = array(
+    '#title' => t('Pause on Mouseover'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['pauseonover'],
+  );
+  $element['aw_showcase_settings']['stoponclick'] = array(
+    '#title' => t('Stop on Mouse Click'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['stoponclick'],
+  );
+  $transition_options = array('hslide' => 'Horizontal Slide', 'vslide' => 'Vertical Slide', 'fade' => 'Fade');
+  $element['aw_showcase_settings']['transition'] = array(
+    '#title' => t('Transition Type'),
+    '#type' => 'select',
+    '#options' => $transition_options,
+    '#default_value' => $settings['aw_showcase_settings']['transition'],
+  );
+  $element['aw_showcase_settings']['transition_speed'] = array(
+    '#title' => t('Transition Speed'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['transition_speed'],
+    '#size' => 5,
+    '#maxlength' => 5,
+    '#description' => t('How fast the transition happens (In milliseconds)'),
+  );
+  $element['aw_showcase_settings']['transition_delay'] = array(
+    '#title' => t('Transition Delay'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['aw_showcase_settings']['transition_delay'],
+    '#size' => 5,
+    '#maxlength' => 5,
+    '#description' => t('How log to wait to begin the transition (In milliseconds)'),
+  );
+  $show_caption_options = array('onload' => 'On Load', 'onhover' => 'On Hover', 'show' => 'Show');
+  $element['aw_showcase_settings']['show_caption'] = array(
+    '#title' => t('Show Caption'),
+    '#type' => 'select',
+    '#options' => $show_caption_options,
+    '#default_value' => $settings['aw_showcase_settings']['show_caption'],
+    '#description' => t('When does the caption get shown to the user.'),
+  );
+  $element['aw_showcase_settings']['thumbnails'] = array(
+    '#title' => t('Show Thumbnails'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['thumbnails'],
+  );
+  $thumbnails_position_options = array('outside-last' => 'Outside Last',
+    'outside-first' => 'Outside First',
+    'inside-last' => 'Inside Last',
+    'inside-first' => 'Inside First');
+  $element['aw_showcase_settings']['thumbnails_position'] = array(
+    '#title' => t('Thumbnail Position'),
+    '#type' => 'select',
+    '#options' => $thumbnails_position_options,
+    '#default_value' => $settings['aw_showcase_settings']['thumbnails_position'],
+    '#description' => t('Where should the thumbnails be positioned?'),
+  );
+  $thumbnails_direction_options = array('vertical' => 'Vertical', 'horizontal' => 'Horizontal');
+  $element['aw_showcase_settings']['thumbnails_direction'] = array(
+    '#title' => t('Thumbnail Direction'),
+    '#type' => 'select',
+    '#options' => $thumbnails_direction_options,
+    '#default_value' => $settings['aw_showcase_settings']['thumbnails_direction'],
+    '#description' => t('Should the thumbnails be displayed horizontally or vertically?'),
+  );
+  $thumbnails_slidex_options = array('0' => 'auto', '1' => 'slide one thumbnail', '2' => 'slide two thumbnails');
+  $element['aw_showcase_settings']['thumbnails_slidex'] = array(
+    '#title' => t('Thumbnail Slidex'),
+    '#type' => 'select',
+    '#options' => $thumbnails_slidex_options,
+    '#default_value' => $settings['aw_showcase_settings']['thumbnails_slidex'],
+    '#description' => t('Do NOT set to auto if vertical thumbnail direction is chosen and continuous rotation is chosen.'),
+  );
+  $element['aw_showcase_settings']['dynamic_height'] = array(
+    '#title' => t('Dynamic Height'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['dynamic_height'],
+    '#description' => t('In webkit browsers, you need to set the width and height of images in the source. Usually works to only set the dimension of the first slide in the showcase.'),
+  );
+  $element['aw_showcase_settings']['speed_change'] = array(
+    '#title' => t('Speed Change'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['speed_change'],
+    '#description' => t('Check this box to prevent users from switching more then one slide at once.'),
+  );
+  $element['aw_showcase_settings']['viewline'] = array(
+    '#title' => t('Viewline'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['aw_showcase_settings']['viewline'],
+    '#description' => t('Check this box and content_width, thumbnails, transition and dynamic_height will be disabled. Just like dynamic height, you need to set the width and height of images in the source.'),
+  );
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary()
+ * The settings info that is shown for the field on the Manage Display screen
+ */
+function awkward_showcase_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = t('Layout: @layout_set ', array(
+    '@layout_set' => $settings['layout_set'],
+  ));
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view()
+ */
+function awkward_showcase_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array(); // Initialize the var
+  $settings = $display['settings']; // get the settings
+  $layout = $settings['layout_set']; // The layout setting selected in the settings form
+  if ($layout <> 'Custom') {
+    $preset_settings = awkward_showcase_get_selected_preset_values($layout);
+    foreach($preset_settings as $key => $value) {
+      $settings[$key] = $value;
+    }
+  }
+  else {
+    foreach($settings['aw_showcase_settings'] as $key => $value) {
+      $settings[$key] = $value;
+    }
+  }
+
+  // theme each of the items with the correct wrappers
+  $rows = array();
+  foreach($items as $delta => $item) {
+    $rendered_main_image = theme('image_style',array(
+        'style_name' => $settings['main_image_style'],
+        'path' => $item['uri'],
+        'width' => $item['width'],
+        'height' => $item['height'],
+        'alt' => $item['alt'],
+        'title' => $item['title'],
+      )
+    );
+    $rendered_pager_image = theme('image_style',array(
+        'style_name' => $settings['pager_image_style'],
+        'path' => $item['uri'],
+        'width' => $item['width'],
+        'height' => $item['height'],
+        'alt' => $item['alt'],
+        'title' => $item['title'],
+      )
+    );
+    // set the caption fields based upon display settings form entries
+    $main_caption = '';
+    if (module_exists('file_entity') && !empty($settings['main_caption_fields'])) {
+      $main_caption_fields = explode(",",$settings['main_caption_fields']);
+      foreach ($main_caption_fields as $main_caption_field) {
+        $main_caption_field = trim($main_caption_field);
+        if (!empty($item[$main_caption_field])) {
+          $main_caption .= $item[$main_caption_field][$langcode][0]['safe_value'] . "<br/>";
+        }
+      }
+    }
+    $pager_caption = '';
+    if (module_exists('file_entity') && !empty($settings['pager_caption_fields'])) {
+      $pager_caption_fields = explode(",",$settings['pager_caption_fields']);
+      foreach ($pager_caption_fields as $pager_caption_field) {
+        $pager_caption_field = trim($pager_caption_field);
+        if (!empty($item[$pager_caption_field])) {
+          $pager_caption .= $item[$pager_caption_field][$langcode][0]['safe_value'] . "<br/>";
+        }
+      }
+    }
+    $rows[] = array(
+      'main' => $rendered_main_image,
+      'pager' => array('image' => $rendered_pager_image, 'caption' => $pager_caption),
+      'caption' => $main_caption,
+    );
+  }
+
+  $element[0]['#markup'] = theme('awkward_showcase_container', array(
+    'items' => $rows,
+    'settings' => $settings,
+  ));
+
+  return $element;
+
+}
+
+
+/**
+ * Sets the options with the layout preset values
+ * @param string $preset_name Name of the preset to get the settings for
+ * @return array
+ */
+function awkward_showcase_get_selected_preset_values($preset_name) {
+  $settings = array();
+  $presets = awkward_showcase_get_layout_presets();
+  $preset_settings = array();
+  $preset_settings = $presets['awkward_showcase_layout_settings'][$preset_name];
+  foreach($preset_settings as $key => $value) {
+    $settings[$key] = $value;
+  }
+  return $settings;
+}
+
+/**
+ * Sets the options with the custom values
+ */
+function awkward_showcase_set_custom_values($settings) {
+  foreach($settings as $key => $value) {
+    $this->options[$key] = $value;
+  }
+}
+
+/**
+ * Get an array of layout preset options
+ * @return array Multi-dimensional array of preset values
+ */
+function awkward_showcase_get_layout_presets() {
+  $presets = array();
+  $presets['awkward_showcase_layout_settings'] = array(
+    'Normal' => array(
+      'content_width' => 700,
+      'content_height' => 470,
+      'fit_to_parent' => FALSE,
+      'auto' => TRUE,
+      'interval' => 3000,
+      'continuous' => FALSE,
+      'loading' => TRUE,
+      'tooltip_width' => 200,
+      'tooltip_icon_width' => 32,
+      'tooltip_icon_height' => 32,
+      'tooltip_offsetx' => 18,
+      'tooltip_offsety' => 0,
+      'arrows' => TRUE,
+      'buttons' => TRUE,
+      'btn_numbers' => TRUE,
+      'keybord_keys' => TRUE,
+      'mousetrace' => FALSE,
+      'pauseonover' => TRUE,
+      'stoponclick' => FALSE,
+      'transition' => 'hslide',
+      'transition_speed' => 500,
+      'transition_delay' => 0,
+      'show_caption' => 'onload',
+      'thumbnails' => FALSE,
+      'thumbnails_position' => 'outside-last',
+      'thumbnails_direction' => 'vertical',
+      'thumbnails_slidex' => 1,
+      'dynamic_height' => FALSE,
+      'speed_change' => TRUE,
+      'viewline' => FALSE,
+    ),
+    'Vertical thumnbails' => array(
+      'content_width' => 700,
+      'content_height' => 470,
+      'fit_to_parent' => FALSE,
+      'auto' => FALSE,
+      'interval' => 3000,
+      'continuous' => FALSE,
+      'loading' => TRUE,
+      'tooltip_width' => 200,
+      'tooltip_icon_width' => 32,
+      'tooltip_icon_height' => 32,
+      'tooltip_offsetx' => 18,
+      'tooltip_offsety' => 0,
+      'arrows' => TRUE,
+      'buttons' => TRUE,
+      'btn_numbers' => TRUE,
+      'keybord_keys' => TRUE,
+      'mousetrace' => FALSE,
+      'pauseonover' => TRUE,
+      'stoponclick' => TRUE,
+      'transition' => 'vslide',
+      'transition_delay' => 300,
+      'transition_speed' => 500,
+      'show_caption' => 'onhover',
+      'thumbnails' => TRUE,
+      'thumbnails_position' => 'outside-last',
+      'thumbnails_direction' => 'vertical',
+      'thumbnails_slidex' => 0,
+      'dynamic_height' => FALSE,
+      'speed_change' => TRUE,
+      'viewline' => FALSE,
+    ),
+    'Horizontal thumbnails' => array(
+      'content_width' => 700,
+      'content_height' => 470,
+      'fit_to_parent' => FALSE,
+      'auto' => FALSE,
+      'interval' => 3000,
+      'continuous' => FALSE,
+      'loading' => TRUE,
+      'tooltip_width' => 200,
+      'tooltip_icon_width' => 32,
+      'tooltip_icon_height' => 32,
+      'tooltip_offsetx' => 18,
+      'tooltip_offsety' => 0,
+      'arrows' => TRUE,
+      'buttons' => TRUE,
+      'btn_numbers' => TRUE,
+      'keybord_keys' => TRUE,
+      'mousetrace' => FALSE,
+      'pauseonover' => TRUE,
+      'stoponclick' => TRUE,
+      'transition' => 'hslide',
+      'transition_delay' => 300,
+      'transition_speed' => 500,
+      'show_caption' => 'onhover',
+      'thumbnails' => TRUE,
+      'thumbnails_position' => 'outside-last',
+      'thumbnails_direction' => 'horizontal',
+      'thumbnails_slidex' => 0,
+      'dynamic_height' => FALSE,
+      'speed_change' => FALSE,
+      'viewline' => FALSE,
+    ),
+    'Dynamic height' => array(
+      'content_width' => 700,
+      'fit_to_parent' => FALSE,
+      'auto' => TRUE,
+      'interval' => 3000,
+      'continuous' => FALSE,
+      'loading' => TRUE,
+      'tooltip_width' => 200,
+      'tooltip_icon_width' => 32,
+      'tooltip_icon_height' => 32,
+      'tooltip_offsetx' => 18,
+      'tooltip_offsety' => 0,
+      'arrows' => TRUE,
+      'buttons' => TRUE,
+      'btn_numbers' => FALSE,
+      'keybord_keys' => TRUE,
+      'mousetrace' => FALSE,
+      'pauseonover' => TRUE,
+      'stoponclick' => TRUE,
+      'transition' => 'fade',
+      'transition_delay' => 300,
+      'transition_speed' => 500,
+      'show_caption' => 'onhover',
+      'thumbnails' => TRUE,
+      'thumbnails_position' => 'outside-last',
+      'thumbnails_direction' => 'horizontal',
+      'thumbnails_slidex' => 0,
+      'dynamic_height' => TRUE,
+      'speed_change' => FALSE,
+      'viewline' => FALSE,
+    ),
+    'Hundred percent' => array(
+      'content_width' => 700,
+      'content_height' => 470,
+      'fit_to_parent' => TRUE,
+      'auto' => FALSE,
+      'interval' => 3000,
+      'continuous' => FALSE,
+      'loading' => TRUE,
+      'tooltip_width' => 200,
+      'tooltip_icon_width' => 32,
+      'tooltip_icon_height' => 32,
+      'tooltip_offsetx' => 18,
+      'tooltip_offsety' => 0,
+      'arrows' => TRUE,
+      'buttons' => TRUE,
+      'btn_numbers' => TRUE,
+      'keybord_keys' => TRUE,
+      'mousetrace' => FALSE,
+      'pauseonover' => TRUE,
+      'stoponclick' => TRUE,
+      'transition' => 'hslide',
+      'transition_delay' => 300,
+      'transition_speed' => 500,
+      'show_caption' => 'onhover',
+      'thumbnails' => TRUE,
+      'thumbnails_position' => 'outside-last',
+      'thumbnails_direction' => 'horizontal',
+      'thumbnails_slidex' => 0,
+      'dynamic_height' => TRUE,
+      'speed_change' => FALSE,
+      'viewline' => FALSE,
+    ),
+    'Viewline' => array(
+      'content_height' => 470,
+      'fit_to_parent' => TRUE,
+      'auto' => FALSE,
+      'interval' => 3000,
+      'continuous' => FALSE,
+      'loading' => TRUE,
+      'tooltip_width' => 200,
+      'tooltip_icon_width' => 32,
+      'tooltip_icon_height' => 32,
+      'tooltip_offsetx' => 18,
+      'tooltip_offsety' => 0,
+      'arrows' => TRUE,
+      'buttons' => TRUE,
+      'btn_numbers' => TRUE,
+      'keybord_keys' => TRUE,
+      'mousetrace' => FALSE,
+      'pauseonover' => TRUE,
+      'stoponclick' => TRUE,
+      'transition' => 'hslide',
+      'transition_delay' => 300,
+      'transition_speed' => 500,
+      'show_caption' => 'onhover',
+      'thumbnails' => TRUE,
+      'thumbnails_position' => 'outside-last',
+      'thumbnails_direction' => 'horizontal',
+      'thumbnails_slidex' => 0,
+      'dynamic_height' => FALSE,
+      'speed_change' => FALSE,
+      'viewline' => TRUE,
+    ),
+  );
+
+  return $presets;
+}

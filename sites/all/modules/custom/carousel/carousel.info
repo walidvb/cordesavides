@@ -1,0 +1,6 @@
+name = Calendar_carousel
+description = TODO: Description of module
+dependencies[] = views
+dependencies[] = jquery_update
+core = 7.x
+files[] = tests/carousel.test

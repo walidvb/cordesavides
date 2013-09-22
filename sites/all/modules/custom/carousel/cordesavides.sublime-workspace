@@ -1,0 +1,587 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"back",
+				"background-attachment"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"pager-",
+				"pager-previous"
+			],
+			[
+				"query",
+				"querystring.parse(qs, sep, eq);"
+			],
+			[
+				"postDa",
+				"postDataChunk"
+			],
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"border-",
+				"border-bottom"
+			],
+			[
+				"pro",
+				"processed"
+			],
+			[
+				"di",
+				"digi_"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"border-col",
+				"border-color"
+			],
+			[
+				"va",
+				"variables"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"padding-",
+				"padding-bottom"
+			],
+			[
+				"blo",
+				"block-system-main-menu"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"attr",
+				"attributes"
+			],
+			[
+				"field_view",
+				"field_view_value"
+			],
+			[
+				"user",
+				"user_load	user_load"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "carousel.module",
+			"settings":
+			{
+				"buffer_size": 526,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "carousel.info",
+			"settings":
+			{
+				"buffer_size": 162,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Nodejs/Nodejs.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"drup",
+				"Snippet: hook_field_storage_update_field"
+			],
+			[
+				"php",
+				"Snippet: h_preprocess"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"git",
+				"Git: Quick Commit"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"",
+				"Package Control: List Packages"
+			],
+			[
+				"check",
+				"Snippet: check_markup"
+			],
+			[
+				"region",
+				"Snippet: template_preprocess_region"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"link",
+				"Snippet: theme_link"
+			],
+			[
+				"preproce",
+				"Snippet: h_preprocess"
+			],
+			[
+				"prepr	",
+				"Snippet: h_preprocess"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Gaston/Sites/mjc/mjc7/sites/all/drush/mjc.aliases.drushrc.php",
+		"/Users/Gaston/Sites/cordesavides/vbbros",
+		"/Users/Gaston/Sites/drupal/makefile.make",
+		"/Users/Gaston/dev/skatemoss/public/beamer.js",
+		"/Users/Gaston/dev/skatemoss/public/controller.js",
+		"/Users/Gaston/dev/skatemoss/tpl/beamer.jade",
+		"/Users/Gaston/dev/skatemoss/web.js",
+		"/Users/Gaston/dev/skatemoss/tpl/controller.jade",
+		"/Users/Gaston/Library/Application Support/Sublime Text 2/Packages/User/sftp_servers/vbbros.net",
+		"/Users/Gaston/Sites/walidvb/index.html",
+		"/Users/Gaston/Library/Application Support/Sublime Text 2/Packages/User/SFTP.errors.log",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1376399307/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/css/artist.css",
+		"/Users/Gaston/Coursera/2.Startup_Engineering/HW/bitstarter/checks.json",
+		"/Users/Gaston/Coursera/2.Startup_Engineering/HW/bitstarter/grader.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1376064116/vbbros.net/home2/vbbrosne/public_html/index.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1374584184/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/js/main.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1374584415/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/myTemplate.inc",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1374584153/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/libraries/share42/share42.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1373472825/vbbros.net/home2/vbbrosne/public_html/vbbros/styles.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1374582526/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/template.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1373471383/vbbros.net/home2/vbbrosne/public_html/vbbros/script.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1372120295/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/css/upgrade.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1373505116/aumbry/httpdocs/styles.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1373882142/vbbros.net/home2/vbbrosne/public_html/sebi/sites/default/settings.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1372120207/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/css/fonts.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1372117040/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/templates/html.tpl.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1372096602/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/modules/video_filter_field/video_filter_field.info",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1372095579/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/modules/video_filter_field/video_filter_field.module",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1372118820/vbbros.net/home2/vbbrosne/public_html/index.php",
+		"/Users/Gaston/Dropbox/Coursera/tuts/nodebeginner/requestHandlers.js",
+		"/Users/Gaston/Dropbox/Coursera/tuts/nodebeginner/requestHandler",
+		"/Users/Gaston/eclipse/pong/canvas/server.js",
+		"/Users/Gaston/Dropbox/Coursera/simpleserver.js",
+		"/Users/Gaston/eclipse/pong/canvas/script.js",
+		"/Users/Gaston/Dropbox/Coursera/tuts/simpleserver.js",
+		"/Users/Gaston/Library/Application Support/Sublime Text 2/Packages/Nodejs/Nodejs.sublime-settings",
+		"/Users/Gaston/Library/Application Support/Sublime Text 2/Packages/Git/Git.sublime-settings",
+		"/Users/Gaston/Dropbox/Coursera/HW1/prime.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1370962177/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/js/main.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1371119570/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/css/press.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1371033280/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/libraries/share42/share42.js",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1370959366/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/myTemplate.inc",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1370961357/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/css/notes.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1370956542/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/css/font.css",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1370879825/vbbros.net/home2/vbbrosne/public_html/mjc/sites/all/themes/moijconnais/js/player1.0.js",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/myTemplate.inc",
+		"/Users/Gaston/Sites/media/sites/all/modules/examples/field_example/field_example.css",
+		"/Users/Gaston/Sites/media/sites/example.sites.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/css/press.css",
+		"/Users/Gaston/Sites/mjc7/sites/all/drush/mjc.aliases.drushrc.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/views-view--Featured.tpl.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/libraries/jquery.cycle/jquery.cycle.all.js",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/block-views-records-block_1.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/mjc/views-view--Featured.tpl.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/includes/clean.preprocess.inc",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/template.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/views-view-fields--Featured.tpl.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/mjc/template.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/node--record.tpl.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/node--blog.tpl.php",
+		"/Users/Gaston/Sites/mjc7/sites/all/themes/moijconnais/node-blog.tpl.php",
+		"/Volumes/Macintosh HD 1/Users/Gaston/Library/Application Support/On The Job 3/OnTheJob.otjs",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1369911382/vbbros.net/home2/vbbrosne/public_html/aumbry/index.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1369911444/vbbros.net/home2/vbbrosne/public_html/aumbry/grid.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1369911543/vbbros.net/home2/vbbrosne/public_html/aumbry/script.js",
+		"/Users/Gaston/Sites/aumbry/index.php",
+		"/var/folders/hs/b1q0515s78533zyjrbs_xnmh0000gn/T/sublime-sftp-browse-1369910804/vbbros.net/home2/vbbrosne/public_html/aumbry/script.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"load_posts",
+			"node",
+			"share",
+			"5s",
+			"2s",
+			"3s",
+			"all",
+			"0.5s",
+			"0.3s",
+			"list",
+			"$title",
+			", </A>",
+			"Arial",
+			"htmlcontent",
+			"pager",
+			"a.",
+			"#player8d0da68dc7af",
+			"350",
+			"game.options",
+			"this",
+			"velY",
+			"velX",
+			"posY",
+			"posX",
+			"canvas",
+			"start",
+			" h",
+			"tthis.options.his",
+			"h",
+			"nethis.options.w",
+			"drathis.options.w",
+			"w",
+			"var",
+			"this.vel",
+			"posX",
+			"[activeGame]",
+			"var",
+			"#player306c9f01b755",
+			"body",
+			"width",
+			"before",
+			"fontello",
+			"asdfontello",
+			"fontello",
+			"font",
+			"body-font",
+			"div",
+			"bigtitle",
+			"artist-social-link",
+			"RGB",
+			"rgb",
+			"RGB",
+			"rgb",
+			"tumblr",
+			"facebook",
+			"Facebook",
+			"facebook",
+			"field_example",
+			"facebook",
+			"facebok",
+			"facebook",
+			"ase-in-out",
+			"var",
+			"$jq",
+			"#left",
+			"[0]['value']",
+			"$node->field",
+			"['0']",
+			"[0]['value']",
+			"moijconnais",
+			"center"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "carousel.module",
+					"settings":
+					{
+						"buffer_size": 526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								369,
+								369
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "carousel.info",
+					"settings":
+					{
+						"buffer_size": 162,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Drupal/Drupal Info File/Drupal Info Files.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"record",
+				"templates/node--record.tpl.php"
+			],
+			[
+				"info",
+				"moijconnais.info"
+			],
+			[
+				"my",
+				"myTemplate.inc"
+			],
+			[
+				"cata",
+				"css/catalog.css"
+			],
+			[
+				"press",
+				"css/press.css"
+			],
+			[
+				"art",
+				"css/artist.css"
+			],
+			[
+				"node",
+				"templates/node--artist.tpl.php"
+			],
+			[
+				"up",
+				"css/upgrade.css"
+			],
+			[
+				"",
+				"css/mjclayout.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

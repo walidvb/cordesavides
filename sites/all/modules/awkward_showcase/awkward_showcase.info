@@ -1,0 +1,18 @@
+name = Awkward Showcase
+description = Provides Views and Field Display formats for image fields using the Awkward Showcase jQuery image gallery.
+core = 7.x
+
+dependencies[] = ctools
+dependencies[] = image
+dependencies[] = libraries
+dependencies[] = views
+
+files[] = awkward_showcase.module
+files[] = plugins/views_plugin_style_awkward_showcase.inc
+
+; Information added by drupal.org packaging script on 2012-07-16
+version = "7.x-1.0-beta5"
+core = "7.x"
+project = "awkward_showcase"
+datestamp = "1342474882"
+

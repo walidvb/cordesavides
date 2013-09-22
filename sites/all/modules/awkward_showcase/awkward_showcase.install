@@ -1,0 +1,15 @@
+<?php
+
+/*
+ * Implements hook_install()
+ */
+function awkward_showcase_install () {
+
+}
+
+/*
+ * Implements hook_uninstall()
+ */
+function awkward_showcase_uninstall () {
+
+}

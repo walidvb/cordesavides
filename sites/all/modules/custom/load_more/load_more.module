@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file load_more.module
+ * TODO: Enter file description here.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function load_more_menu() {
+  $items['load_more'] = array(
+    'title' => 'Example Page',
+    'page callback' => '_load_more',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+    $items['admin/config/load_more'] = array(
+    'title' => 'Load posts',
+    'description' => 'Adjust Load posts settings.',
+    'file' => 'load_more.admin.inc',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('load_more_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_init().
+ */
+function load_more_init() {
+    drupal_add_css(drupal_get_path('module', 'load_more') . '/load_more.css');
+    drupal_add_js(drupal_get_path('module', 'load_more') . '/load_more.js');
+    //drupal_add_js(drupal_get_path('module', 'load_more') . '/load_more_history.js');
+
+    //drupal_add_library('load_more', 'statehandler.load_more', TRUE);
+    $view_name = 'calendar';
+    variable_set('load_more_view', $view_name);
+    $site_name = variable_get('site_name');
+    $settings = array(
+      'view_name' => $view_name,
+      'item_name' => 'owl-item',
+      'site_name' => $site_name
+      );
+    drupal_add_js(array('load_more' => $settings), 'setting');
+
+
+}
+
+function _load_more($nid){
+  $node = node_load($nid); 
+  $path =  drupal_get_path_alias('node/'.$nid);
+  $view = node_view($node); 
+  $result = drupal_render($view);
+  return drupal_json_output(array(
+    'node_id' => $nid,
+    'node_content'=>$result,
+    'node_title'=> $node->title,
+    'node_path' => $path,
+    ));
+ }
+
+
+
+function load_more_preprocess_views_view_fields(&$vars){
+  $view_name = variable_get('load_more_view');
+  if($vars['view']->name == $view_name)
+  {
+    array_push($vars['classes_array'], $view_name.'-trigger');
+    $index = $vars['view']->row_index;
+    $nid = $vars['view']->result[$index]->nid;
+    $mapping = array($index => $nid);
+    $settings = array(
+      'mapping' => $mapping
+    );
+    drupal_add_js(array('load_more' => $settings), 'setting');
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function load_more_preprocess_node(&$vars) {
+      drupal_add_js(array('load_more' => array('nid' => $vars['nid'])), 'setting');
+}

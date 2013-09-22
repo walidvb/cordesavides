@@ -1,0 +1,4 @@
+name = Load Post
+description = TODO: Description of module
+core = 7.x
+files[] = tests/load_more.test

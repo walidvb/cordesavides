@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file carousel.module
+ * TODO: Enter file description here.
+ */
+
+function carousel_init() {
+  drupal_add_js(drupal_get_path('module', 'carousel') . '/owl-carousel/owl.carousel.js');
+  drupal_add_css(drupal_get_path('module', 'carousel') . '/owl-carousel/owl.carousel.css');
+  drupal_add_css(drupal_get_path('module', 'carousel') . '/owl-carousel/owl.theme.css');
+  drupal_add_js(drupal_get_path('module', 'carousel') . '/carousel.js');
+  drupal_add_css(drupal_get_path('module', 'carousel') . '/carousel.css');
+}

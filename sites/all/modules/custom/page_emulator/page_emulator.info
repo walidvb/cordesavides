@@ -1,0 +1,3 @@
+name = Page emulator
+description = Creates two pages: archive that returns to the last event, and new that returns the next event
+core = 7.x
