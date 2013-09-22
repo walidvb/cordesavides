@@ -12,3 +12,10 @@ function carousel_init() {
   drupal_add_js(drupal_get_path('module', 'carousel') . '/carousel.js');
   drupal_add_css(drupal_get_path('module', 'carousel') . '/carousel.css');
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function carousel_preprocess_node(&$vars) {
+      drupal_add_js(array('shared' => array('nid' => $vars['nid'])), 'setting');
+}

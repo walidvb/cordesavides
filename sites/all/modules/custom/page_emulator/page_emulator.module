@@ -7,13 +7,12 @@
 
 /**
  * Implements hook_views_query_alter()
+ * Update the filter operator, ie get past dates if the node viewed is in the past, otherwise get future dates.
  */
 function page_emulator_views_query_alter(&$view, &$query) {
   if ($view->name == 'calendar') {
-    dpm($view);
     $node_viewed_date = $view->args[0];
     $today = date('Y-m-d');
-    dpm($node_viewed_date <= $today);
     $node_is_past = $node_viewed_date <= $today;
     if (isset($query->where[1]) && $node_is_past) {
       if (trim($query->where[1]['conditions'][2]['field']) == "DATE_FORMAT(field_data_field_date.field_date_value, '%Y-%m-%d\T%H') >= :field_data_field_date_field_date_value") {
@@ -28,24 +27,18 @@ function page_emulator_views_query_alter(&$view, &$query) {
  * Implements hook_menu().
  */
 function page_emulator_menu() {
-  /*
-   *$items['blog'] = array(
-   *  'title' => 'blogs',
-   *  'page callback' => 'blog_page',
-   *  'access arguments' => array('access content'),
-   *  'type' => MENU_SUGGESTED_ITEM,
-   *);
-   */
+
   $items['archive'] = array(
     'title' => 'Archives',
-    'page callback' => '_get_next_node_page',
+    'page callback' => '_get_nearest_node_page',
     'page arguments' => array(true),
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
     );
-  $items['calendar'] = array(
+
+  $items['calendrier'] = array(
     'title' => t('Calendrier'),
-    'page callback' => '_get_next_node_page',
+    'page callback' => '_get_nearest_node_page',
     'page arguments' => array(false),
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,

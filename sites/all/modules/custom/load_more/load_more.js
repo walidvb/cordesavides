@@ -6,7 +6,7 @@
 		attach: function(context, settings){
 			console.log(settings);
 			var $settings = settings.load_more;
-			var $mapping = $settings.mapping;
+			var $mapping = settings.shared.mapping;
 
 			var $view = $('.'+$settings.view_name);
 			var $trigger = $('.'+$settings.item_name);
