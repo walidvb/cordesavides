@@ -4,7 +4,20 @@
  * @file carousel.module
  * TODO: Enter file description here.
  */
-
+/**
+ * Implements hook_field_formatter_info().
+ */
+function page_emulator_field_formatter_info() {
+  $info['link_to_social'] = array(
+    'label' => t('Link to Social'),
+    'field types' => array('link_field'),
+    'module' => 'link_to_social',
+    'settings' => array(
+      'format' => '',
+      ),
+    );
+  return $info;
+}
 /**
  * Implements hook_views_query_alter()
  * Update the filter operator, ie get past dates if the node viewed is in the past, otherwise get future dates.
@@ -33,15 +46,17 @@ function page_emulator_menu() {
     'page callback' => '_get_nearest_node_page',
     'page arguments' => array(true),
     'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
     );
 
-  $items['calendrier'] = array(
-    'title' => t('Calendrier'),
+  $items['agenda'] = array(
+    'title' => t('Agenda'),
     'page callback' => '_get_nearest_node_page',
     'page arguments' => array(false),
     'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
     );
   return $items;
 }
@@ -63,22 +78,26 @@ function _get_nearest_node_page($past = false)
   $query = new EntityFieldQuery();
 
   $date = date('Y-m-d');
-  $query->entityCondition('entity_type', 'node')
+  $result = $query->entityCondition('entity_type', 'node')
   ->entityCondition('bundle', 'event')
   ->propertyCondition('status', 1)
   ->fieldCondition('field_date', 'value', $date, $operator)
   ->fieldOrderBy('field_date', 'value', $sort_order)
-  ->range(0, 1);
-
-
-  $result = $query->execute();
-  $result = $result['node'];
-  $nid;
-  foreach($result as $node => $content)
+  ->range(0, 1)
+  ->execute();
+  
+  if(!sizeof($result))
   {
-    $nid = $content->nid;
-  }
+   return 'Sorry, there is no recent event';
+ }
+ $result = $result['node'];
+ 
+ $nid;
+ foreach($result as $node => $content)
+ {
+  $nid = $content->nid;
+}
 
-  menu_set_active_item('node/'.$nid);
-  return menu_execute_active_handler('node/' . $nid, FALSE);
+menu_set_active_item('node/'.$nid);
+return menu_execute_active_handler('node/' . $nid, FALSE);
 }
