@@ -71,13 +71,14 @@ function _get_nearest_node_page($past = false)
   }
   else
   {
-    $operator = '>';
+    $operator = '>=';
     $sort_order = 'ASC';
     drupal_add_js(array('page_emulator' => array('past' => false)), 'setting');
   }
   $query = new EntityFieldQuery();
 
   $date = date('Y-m-d');
+  dpm($date);
   $result = $query->entityCondition('entity_type', 'node')
   ->entityCondition('bundle', 'event')
   ->propertyCondition('status', 1)
@@ -85,13 +86,15 @@ function _get_nearest_node_page($past = false)
   ->fieldOrderBy('field_date', 'value', $sort_order)
   ->range(0, 1)
   ->execute();
-  
+
   if(!sizeof($result))
   {
-   return 'Sorry, there is no recent event';
+    $time = $past?'future':'antérieure';
+    $return = t('Désolé, il n\'y a pas de date @time', array('@time' => $time));
+    return $return;
  }
  $result = $result['node'];
- 
+
  $nid;
  foreach($result as $node => $content)
  {

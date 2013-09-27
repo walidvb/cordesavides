@@ -1,0 +1,36 @@
+.owl-next{
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+	border-left:10px solid black; 
+	text-indent: -9999px;
+	float: right;
+}
+
+.owl-prev{
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+	border-right:10px solid black; 
+	text-indent: -9999px;
+	float: left;
+}
+
+.owl-next, .owl-prev{
+	padding: 0px!important;
+	-webkit-border-radius: 0px!important;
+	-moz-border-radius: 0px!important;
+	border-radius: 0px!important;
+	background: none!important;
+	filter: Alpha(Opacity=50);
+	opacity: 0.5;
+	position: relative;
+	top: -32px;
+}
+
+.owl-controls{
+}
+.owl-pagination, .owl-buttons{
+}

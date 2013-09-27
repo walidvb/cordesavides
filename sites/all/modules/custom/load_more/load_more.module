@@ -15,28 +15,17 @@ function load_more_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
-
-    $items['admin/config/load_more'] = array(
-    'title' => 'Load posts',
-    'description' => 'Adjust Load posts settings.',
-    'file' => 'load_more.admin.inc',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('load_more_admin_settings'),
-    'access arguments' => array('administer site configuration'),
-  );
-
   return $items;
 }
 
 /**
  * Implements hook_init().
  */
-function load_more_init() {
+function load_more_preprocess_node(&$vars) {
+  if($vars['type'] == 'event')
+  {
     drupal_add_css(drupal_get_path('module', 'load_more') . '/load_more.css');
     drupal_add_js(drupal_get_path('module', 'load_more') . '/load_more.js');
-    //drupal_add_js(drupal_get_path('module', 'load_more') . '/load_more_history.js');
-
-    //drupal_add_library('load_more', 'statehandler.load_more', TRUE);
     $view_name = 'calendar';
     variable_set('load_more_view', $view_name);
     $site_name = variable_get('site_name');
@@ -46,7 +35,7 @@ function load_more_init() {
       'site_name' => $site_name
       );
     drupal_add_js(array('load_more' => $settings), 'setting');
-
+  }
 
 }
 
@@ -61,7 +50,7 @@ function _load_more($nid){
     'node_title'=> $node->title,
     'node_path' => $path,
     ));
- }
+}
 
 
 
@@ -75,7 +64,7 @@ function load_more_preprocess_views_view_fields(&$vars){
     $mapping = array($index => $nid);
     $settings = array(
       'mapping' => $mapping
-    );
+      );
     drupal_add_js(array('shared' => $settings), 'setting');
   }
 }

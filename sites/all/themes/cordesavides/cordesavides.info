@@ -1,48 +1,52 @@
 name = Cordes Avides
-description = Built to use Bootstrap, a sleek, intuitive, and powerful front-end framework for faster and easier web development.
+description = Cordes Avides, Le site
 core = 7.x
 base theme = bootstrap
 
-regions[top]            = 'Top Header'
-regions[header]         = 'Header'
+; Regions
 regions[navigation]     = 'Navigation'
-regions[slider]         = 'Slider'
+regions[header]         = 'Top Bar'
 regions[highlighted]    = 'Highlighted'
 regions[help]           = 'Help'
-regions[preface]        = 'Preface'
-regions[sidebar_first]  = 'Primary Column'
-regions[sidebar_second] = 'Secondary Column'
-regions[content_top]    = 'Content Top'
 regions[content]        = 'Content'
-regions[content_bottom] = 'Content Bottom'
-regions[postcript_top]  = 'Postcript Top'
-regions[postcript_bottom] = 'Postcript Bottom'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
 
+; Stylesheets
 stylesheets[all][] = css/style.css
-scripts[] = js/script.js
 
-; --------------------------------------------------------------------------------
-; Enable Skinr integration.
-; --------------------------------------------------------------------------------
+;**********************************
+; METHOD 1: Bootstrap Source Files
+;**********************************
+; 
+; ; Scripts
+; 
+; scripts[] = 'bootstrap/js/affix.js'
+; scripts[] = 'bootstrap/js/alert.js'
+; scripts[] = 'bootstrap/js/button.js'
+; scripts[] = 'bootstrap/js/carousel.js'
+; scripts[] = 'bootstrap/js/collapse.js'
+; scripts[] = 'bootstrap/js/dropdown.js'
+; scripts[] = 'bootstrap/js/modal.js'
+; scripts[] = 'bootstrap/js/tooltip.js'
+; scripts[] = 'bootstrap/js/popover.js'
+; scripts[] = 'bootstrap/js/scrollspy.js'
+; scripts[] = 'bootstrap/js/tab.js'
+; scripts[] = 'bootstrap/js/transition.js'
+; ; Settings inherited by base theme, uncomment to override.
+; ;settings[toggle_name] = 0
+; ;settings[toggle_search] = 1
+; ; Disable the CDN as we are using our own source files.
+; settings[bootstrap_cdn] = ''
 
-skinr[api]                                  = 2
-skinr[directory]                            = skins
 
+;*************************
+; METHOD 2: Bootstrap CDN
+;*************************
+; 
+; Settings inherited by base theme, uncomment to override.
 settings[toggle_name] = 0
 settings[toggle_search] = 1
-settings[toggle_responsive] = 1
-settings[sidebar_first_width] = 3
-settings[sidebar_second_width] = 3
-settings[print_content] = 1
-settings[nav_style] = 0
-settings[collapse] = 1
-settings[container] = 0
-settings[row] = 0
-
-; Information added by drupal.org packaging script on 2013-08-20
-version = "7.x-2.2"
-core = "7.x"
-project = "bootstrap_barrio"
-datestamp = "1376957768"
-
+settings[cdn_bootstrap] = 1
+settings[bootstrap_cdn] = 3.0.0

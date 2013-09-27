@@ -4,7 +4,6 @@
 	
 	Drupal.behaviors.load_more = {
 		attach: function(context, settings){
-			console.log(settings);
 			var $settings = settings.load_more;
 			var $mapping = settings.shared.mapping;
 
@@ -14,7 +13,7 @@
 
 		//---------------------ajax calls
 		var loadFrom = function (nid, triggerIndex){
-			var targetContainer = $($targetContainerSelector).addClass('loading');
+			var targetContainer = $($targetContainerSelector).addClass('load-more-loading');
 			var ajaxSettings = 
 			{
 				url: settings.basePath + 'load_more/' + nid,
@@ -36,7 +35,7 @@
 						}, title, '/' + settings.basePath + response.node_path);
 						pushState = false;
 					}
-					targetContainer.removeClass('loading');
+					targetContainer.removeClass('load-more-loading');
 				},
 				error: function(xhr,status,error)
 				{
@@ -53,21 +52,21 @@
 
 		$trigger.once('load_more', function(){
 			var $this = $(this);
-			$this.bind('click', function(){
+			$this.addClass('load-more-trigger')
+			.bind('click', function(){
 				var nid = $mapping[$this.index()];
 				pushState = true;
 				loadFrom(nid, $this.index());
-			})
+			});
 			$this.find('a').bind('click', function(e){
 				e.preventDefault();
-			})
+			});
 		});
 
 		$('body').once('load-more', function(){
 			History.Adapter.bind(window,'statechange',function(){
 				var State = History.getState();
 				pushState = false;
-				console.log(State);
 				loadFrom(State.data.nid, State.data.triggerIndex);
 			});
 			History.replaceState({'nid': settings.load_more.nid, }, document.title, window.location.href);
