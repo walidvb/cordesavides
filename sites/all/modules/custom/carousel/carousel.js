@@ -9,9 +9,9 @@
 				{
 					items: 6,
 					navigation: true,
-					itemsDesktop : [1199,8],
-				    itemsDesktopSmall : [980,6],
-				    itemsTablet: [768,4],
+					itemsDesktop : [1199,6],
+				    itemsDesktopSmall : [980,4],
+				    itemsTablet: [768,3],
 				    itemsMobile : [479,2],
 				};
 				var owl = $(wrapperSelector).owlCarousel(owlSettings).data('owlCarousel');
@@ -19,14 +19,14 @@
 
 				owl.goTo(currentIndex);
 				var className = 'calendar-item-active';
-				$('.owl-item:nth-child(' + currentIndex+1 + ')').addClass(className);
+				$('.owl-item:nth-child(' + (currentIndex+1) + ')').addClass(className);
 				$('.owl-item').addClass('col-md-2');
 
 				$('body').bind('item-loaded', function(event, triggerIndex)
 				{
-					console.log($('.owl-item:nth-child(' + triggerIndex+1 + ')'), triggerIndex);
+					console.log(triggerIndex);
 					$('.'+className).removeClass(className);
-					$('.owl-item:nth-child(' + triggerIndex+1 + ')').addClass(className);
+					$('.owl-item:nth-child(' + (triggerIndex+1) + ')').addClass(className);
 					owl.goTo(triggerIndex);
 				});
 			});
