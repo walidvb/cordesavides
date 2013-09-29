@@ -1,1 +1,28 @@
 // Insert your styling here.
+.navbar-nav:first-child li{
+	float:none;
+}
+
+.navbar-nav li{
+	font-size: @font-size-xlarge;
+}
+// 
+
+@cal-height: 100px;
+
+.calendar-item-active .calendar-row, .calendar-row:hover{
+	background-color: @bordeaux;
+	a, span{
+		color: @white;
+	}
+}
+
+.calendar-row{
+	background-color: @beige-darker;
+	height: @cal-height;
+	padding: 20px 5px;
+	font-size: @font-size-xlarge;
+	a, span{
+		color: @beige;
+	}
+}

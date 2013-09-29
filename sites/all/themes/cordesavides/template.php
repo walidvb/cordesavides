@@ -5,17 +5,10 @@
  */
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Bootstrap theme wrapper function for the primary menu links
  */
-function cordesavides_menu_tree__main_menu(&$variables){
-	dpm($variables);
-	dpm('hello');
-}
-
-/**
- * Implements hook_preprocess_page().
- */
-function cordesavides_preprocess_node(&$variables) {
+function cordesavides_menu_tree__primary(&$variables) {
+  return '<ul class="menu nav navbar-nav col-md-2">' . $variables['tree'] . '</ul>';
 }
 
 function cordesavides_video_filter_iframe(&$variables) {
@@ -29,3 +22,34 @@ function cordesavides_video_filter_iframe(&$variables) {
   return $output;
 }
 
+/**
+* Implements hook_date_format_types().
+*/
+function cordesavides_date_format_types() {
+  return array(
+    'french'  => t('french'),
+  );
+}
+
+/**
+* Implements hook_date_formats().
+*/
+function cordesavides_date_formats() {
+  $formats = array();
+
+  $formats[] = array(
+    'type'    => 'french',
+    'format'  => 'd m', // 24|Jun <span>2012</span>
+    'locales' => array(fr_FR),
+  );
+
+
+  // save the new date fortmas into variables
+  foreach ($formats as $format) {
+
+    variable_set('date_format_' . $format['type'], $format['format']);
+
+  }
+  dpm($sormats);
+  return $formats;
+}

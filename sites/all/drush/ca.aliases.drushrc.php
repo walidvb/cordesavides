@@ -7,6 +7,7 @@
     '%files' => 'sites/default/files',
     '%modules' => 'sites/all/modules',
     '%themes' => 'sites/all/themes',
+    '%notfiles' => 'sites/all',
   )
 	);
 
@@ -21,5 +22,6 @@
     '%files' => 'sites/default/files',
     '%modules' => 'sites/all/modules',
     '%themes' => 'sites/all/themes',
+    '%notfiles' => 'sites/all',
   )
 	);

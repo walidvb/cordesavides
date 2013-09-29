@@ -68,17 +68,22 @@ function _get_nearest_node_page($past = false)
     $operator = '<=';
     $sort_order = 'DESC';
     drupal_add_js(array('page_emulator' => array('past' => true)), 'setting');
+    menu_set_active_trail('archive');
   }
   else
   {
     $operator = '>=';
     $sort_order = 'ASC';
     drupal_add_js(array('page_emulator' => array('past' => false)), 'setting');
+    menu_set_active_item('agenda');
   }
+  menu_set_active_item('agenda');
+
+  menu_tree_set_path('main-menu', 'agenda');
+
   $query = new EntityFieldQuery();
 
   $date = date('Y-m-d');
-  dpm($date);
   $result = $query->entityCondition('entity_type', 'node')
   ->entityCondition('bundle', 'event')
   ->propertyCondition('status', 1)
@@ -100,7 +105,6 @@ function _get_nearest_node_page($past = false)
  {
   $nid = $content->nid;
 }
-
 menu_set_active_item('node/'.$nid);
 return menu_execute_active_handler('node/' . $nid, FALSE);
 }

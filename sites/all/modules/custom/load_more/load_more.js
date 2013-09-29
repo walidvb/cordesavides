@@ -13,6 +13,7 @@
 
 		//---------------------ajax calls
 		var loadFrom = function (nid, triggerIndex){
+			console.log('loadFrom run from ' + nid);
 			var targetContainer = $($targetContainerSelector).addClass('load-more-loading');
 			var ajaxSettings = 
 			{
@@ -42,6 +43,7 @@
 					console.log(xhr);
 					console.log(status);
 					console.log(error);
+					targetContainer.removeClass('load-more-loading');
 				}
 			}
 
@@ -69,13 +71,7 @@
 				pushState = false;
 				loadFrom(State.data.nid, State.data.triggerIndex);
 			});
-			History.replaceState({'nid': settings.load_more.nid, }, document.title, window.location.href);
-			
-			$(this).bind('item-loaded', function(e, trigger){
-				var className = 'calendar-item-active';
-				$('.'+className).removeClass(className);
-				$(trigger).addClass(className);
-			});
+			History.replaceState({'nid': settings.shared.nid, }, document.title, window.location.href);
 		});
 	}
 }

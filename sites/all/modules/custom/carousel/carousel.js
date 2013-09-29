@@ -18,9 +18,15 @@
 				var currentIndex = settings.shared.mapping.indexOf(settings.shared.nid);
 
 				owl.goTo(currentIndex);
+				var className = 'calendar-item-active';
+				$('.owl-item:nth-child(' + currentIndex+1 + ')').addClass(className);
+				$('.owl-item').addClass('col-md-2');
 
 				$('body').bind('item-loaded', function(event, triggerIndex)
 				{
+					console.log($('.owl-item:nth-child(' + triggerIndex+1 + ')'), triggerIndex);
+					$('.'+className).removeClass(className);
+					$('.owl-item:nth-child(' + triggerIndex+1 + ')').addClass(className);
 					owl.goTo(triggerIndex);
 				});
 			});
