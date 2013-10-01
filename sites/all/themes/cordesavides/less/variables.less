@@ -5,6 +5,22 @@
 @bordeaux:				#A03F30;
 @black: 				#100D07;
 @white: 				#FFFFFF;
+
+
+.stripes(){
+	background-image: linear-gradient(-45deg, transparent 25%, @bordeaux 25%, @bordeaux 50%, transparent 50%, transparent 75%, @bordeaux 75%, @bordeaux);
+    background-size: 50px 50px;
+    background-color: @black;
+    background-position: -50%;
+    -webkit-transition: background-position 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -webkit-animation: move 8s infinite linear;
+	background-size: 50px 50px;
+}
+
+@-webkit-keyframes move{
+    from{background-position: 50%;}
+    to{background-position: -50%;}
+}
 // Global values
 // --------------------------------------------------
 
@@ -41,8 +57,9 @@
 
 // Typography
 // -------------------------
-
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@font-family-sans-serif:  "Arial", Arial, sans-serif;
+@font-family-second: 	  'Open Sans Condensed', sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
@@ -51,12 +68,12 @@
 @font-size-large:         ceil(@font-size-base * 1.25); // ~18px
 @font-size-small:         ceil(@font-size-base * 0.85); // ~12px
 @font-size-xlarge:        ceil(@font-size-base * 1.5); // ~21px
-@font-size-xxlarge:    ceil(@font-size-base * 1.8); // ~25px
+@font-size-xxlarge:    	  ceil(@font-size-base * 2.8); // ~35px
 
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
 
-@headings-font-family:    @font-family-base;
+@headings-font-family:    @font-family-second;
 @headings-font-weight:    500;
 @headings-line-height:    1.1;
 

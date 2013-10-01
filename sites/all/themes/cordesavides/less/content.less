@@ -4,10 +4,39 @@
 	color: @white;
 }
 
+.field-name-field-music-genre{
+	color: @white;
+}
 .field-body{
 	margin-top: 45px;
 }
-#admin-toolbar *{
-	box-sizing: content-box;
+
+.facebook-album{
+	position: absolute;
+	top: 50px;
+	bottom: 0px;
+	overflow-y: auto;
+	width: 100%;
+	.facebook-album-image{
+		width: 31%;
+		padding: 10px 1%;
+		float: left;
+		img{
+			margin: auto;
+		}
+	}
 }
 
+.load-more-loading:after{  
+    content: '';
+	.stripes;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: repeat;
+}
+
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget iframe{
+	width: 100% !important;
+}
