@@ -27,6 +27,14 @@ function page_emulator_views_query_alter(&$view, &$query) {
     $node_viewed_date = $view->args[0];
     $today = date('Y-m-d');
     $node_is_past = $node_viewed_date <= $today;
+    if($node_is_past)
+    {
+          menu_set_active_item('archive');
+    }
+    else
+    {
+          menu_set_active_item('agenda');
+    }
     if (isset($query->where[1]) && $node_is_past) {
       if (trim($query->where[1]['conditions'][2]['field']) == "DATE_FORMAT(field_data_field_date.field_date_value, '%Y-%m-%d\T%H') >= :field_data_field_date_field_date_value") {
         // Use '>=' condition instead of '='
@@ -42,7 +50,7 @@ function page_emulator_views_query_alter(&$view, &$query) {
 function page_emulator_menu() {
 
   $items['archive'] = array(
-    'title' => 'Archives',
+    'title' => t('Archives'),
     'page callback' => '_get_nearest_node_page',
     'page arguments' => array(true),
     'access arguments' => array('access content'),
@@ -63,12 +71,14 @@ function page_emulator_menu() {
 
 function _get_nearest_node_page($past = false)
 {
+
   if($past)
   {
-    $operator = '<=';
+    $operator = '<';
     $sort_order = 'DESC';
     drupal_add_js(array('page_emulator' => array('past' => true)), 'setting');
-    menu_set_active_trail('archive');
+    menu_set_active_item('archive');
+
   }
   else
   {
@@ -77,9 +87,6 @@ function _get_nearest_node_page($past = false)
     drupal_add_js(array('page_emulator' => array('past' => false)), 'setting');
     menu_set_active_item('agenda');
   }
-  menu_set_active_item('agenda');
-
-  menu_tree_set_path('main-menu', 'agenda');
 
   $query = new EntityFieldQuery();
 
@@ -105,6 +112,5 @@ function _get_nearest_node_page($past = false)
  {
   $nid = $content->nid;
 }
-menu_set_active_item('node/'.$nid);
 return menu_execute_active_handler('node/' . $nid, FALSE);
 }
