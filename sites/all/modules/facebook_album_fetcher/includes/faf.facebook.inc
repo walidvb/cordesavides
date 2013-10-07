@@ -104,7 +104,7 @@ function facebook_album_fetcher_get_graph_api_json_data($url) {
  */
 function facebook_album_fetcher_get_friend_list() {
   $user_info = facebook_album_fetcher_get_user_info();
-  $json_data = facebook_album_fetcher_get_graph_api_json_data('https://graph.facebook.com/' . $user_info->id . '/friends?access_token=' . FAF_ACCESS_TOKEN);
+  $json_data = facebook_album_fetcher_get_graph_api_json_data('https://graph.facebook.com/' . $user_info->id . '/friends?width=40&height=60access_token=' . FAF_ACCESS_TOKEN);
   if (isset($json_data->error)) {
     return ($json_data->error->code);
   }
@@ -115,7 +115,7 @@ function facebook_album_fetcher_get_friend_list() {
  * Function for getting the photos from Album.
  */
 function facebook_album_fetcher_get_fb_photos($album_id) {
-  $json_data = facebook_album_fetcher_get_graph_api_json_data('https://graph.facebook.com/' . $album_id . '/photos?access_token=' . FAF_ACCESS_TOKEN . '&limit=999&fields=name,source,picture&type=square');
+  $json_data = facebook_album_fetcher_get_graph_api_json_data('https://graph.facebook.com/' . $album_id . '/photos?access_token=' . FAF_ACCESS_TOKEN . '&limit=999&fields=name,source,picture&type=square&width=40&height=60');
   if (isset($json_data->error)) {
     return ($json_data->error->message);
   }
@@ -141,7 +141,7 @@ function facebook_album_fetcher_get_fb_photos_html($album_id) {
   }
   $image_counter = 1;
   foreach ($photos_array as $key) {
-    $faf_photos_html .= "<a class=\"colorbox facebook-album-image\" rel=\"colorbox[event]\" target=\"_blank\" href=\"" . $key->source . "\" $light_box_class><img src=\"" . $key->picture . "\" class=\"" . $default_class . "\"/></a>";
+    $faf_photos_html .= "<a class=\"colorbox facebook-album-image col-md-4 col-sm-3 col-xs-6\" rel=\"colorbox[event]\" target=\"_blank\" href=\"" . $key->source . "\" $light_box_class><img src=\"" . $key->picture . "\" class=\"" . $default_class . "\"/></a>";
     /*if ($faf_image_columns && $image_counter) {
       if ($image_counter % $faf_image_columns == 0) {
         $faf_photos_html = "<div>" . $faf_photos_html . "</div>";

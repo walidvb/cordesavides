@@ -1,29 +1,103 @@
 // Insert your styling here.
+@header-height: 80px;
+@header-margin-bottom: 20px;
+
+.field-name-field-flyer img{
+	 width: 100%;
+	 height: auto;
+}
 .field-artiste{
 	font-size: @font-size-xxlarge;
-	color: @white;
+	margin-top: 0px;
 }
 
-.field-name-field-music-genre{
+.artist-details{
+	background-color: @body-bg-2;
+	line-height: 1.6;
+	font-size: @font-size-large;
+	padding: @padding;
+	.field-name-field-music-genre, .field-social{
+		display: inline;
+	}
+	.link-to-social{
+		float: right;
+		background-color: @body-bg;
+		.link-to-social-item{
+			float: left;
+			 a{
+			background-color: @button-bg;
+			color: @button-color;
+			height: 100%;
+			display: inline-block;
+			margin: 0px 3px;
+			&:hover{
+				background-color: @button-hover-bg;
+
+			}
+		}
+		}
+	}
+}
+
+#cboxOverlay{
+	background-color: @body-bg;
+}
+
+#cboxNext, #cboxPrevious, #cboxClose{
+	display: none;
+}
+
+.field-artiste, .field-name-field-music-genre{
 	color: @white;
+	font-family: @font-family-second;
 }
 .field-body{
-	margin-top: 45px;
+	margin-top: @header-margin-bottom;
 }
 
-.facebook-album{
+.field-name-field-facebook-album{
 	position: absolute;
-	top: 50px;
+	top: @header-height;
 	bottom: 0px;
 	overflow-y: auto;
-	width: 100%;
+	width: 96%;
+	padding: 0px 10px;
+	background-color: fade(@body-bg,80%);
+	-webkit-overflow-scrolling: touch;	
 	.facebook-album-image{
-		width: 31%;
-		padding: 10px 1%;
-		float: left;
+			margin-bottom: 10px;
 		img{
 			margin: auto;
+			border: none;
 		}
+	}
+}
+
+.easy_social_box{
+	height: 111px;
+}
+.pane-facebook-comments-box{
+	.pane-title{
+		background-color: @body-bg-2;
+		padding: @padding;
+		&:after{
+			content: '';
+			width: 0px;
+			overflow: hidden;
+			display: inline-block;
+			transition: all 1s linear;
+			-webkit-transition: all 1s linear;
+
+		}
+		&.closed:after{
+			content: '...';
+			width: 30px;
+		}
+		&:hover{
+			background-color: @body-bg-2-hover;
+		}
+	}
+	.pane-content{
 	}
 }
 
@@ -35,7 +109,6 @@
 	height: 100%;
 	background-repeat: repeat;
 }
-
 
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget iframe{
 	width: 100% !important;

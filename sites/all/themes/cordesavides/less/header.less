@@ -3,28 +3,52 @@
 	float:none;
 	font-size: @font-size-xlarge;
 	font-family: @font-family-second;
+	a{
+			background-color: @nav-link-bg;
+	}
 }
 // 
 
 @cal-height: 100px;
 
-.calendar-item-active .calendar-row, .calendar-row:hover{
-	background-color: @bordeaux;
-	a, span{
-		color: @white;
-	}
-}
-
 .calendar-row{
-	background-color: @beige-darker;
+	background-color: darken(@body-color, 40%);
 	height: @cal-height;
 	padding: 20px 10px;
 	font-size: @font-size-xlarge;
 	font-family: @font-family-second;
 	a, span{
-		color: @beige;
+		color: @body-color;
+	}
+	.calendar-item-active &, &:hover{
+		background-color: @bordeaux;
+		a, span{
+			color: @body-color;
+		}
+	}
+	.calendar-event-title{
+		margin-top: 0px;
 	}
 }
 
-// Carousel
-
+.owl-prev,.owl-next, .owl-page{
+	opacity: 1!important;
+}
+.owl-prev{
+	border-right-color: @button-bg!important;
+		&:hover{
+		border-right-color: @button-hover-bg!important;
+	}
+}
+.owl-next{
+	border-left-color: @button-bg!important;
+		&:hover{
+		border-left-color: @button-hover-bg!important;
+	}
+}
+.owl-page span{
+	background-color: @button-bg!important;
+		&:hover{
+		background-color: @button-hover-bg!important;
+	}
+}

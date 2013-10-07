@@ -7,12 +7,12 @@
 
 				var owlSettings =
 				{
-					items: 6,
+					items: 3,
 					navigation: true,
-					itemsDesktop : [1199,6],
-				    itemsDesktopSmall : [980,4],
-				    itemsTablet: [768,3],
-				    itemsMobile : [479,2],
+					itemsDesktop : [1199,3],
+				    itemsDesktopSmall : [980,2],
+				    itemsTablet: [768,2],
+				    itemsMobile : [479,1],
 				};
 				var owl = $(wrapperSelector).owlCarousel(owlSettings).data('owlCarousel');
 				var currentIndex = settings.shared.mapping.indexOf(settings.shared.nid);

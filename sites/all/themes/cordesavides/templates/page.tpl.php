@@ -84,6 +84,6 @@
 
   </div>
 </div>
-<footer class="footer container">
+<footer class="footer navbar-fixed-bottom container">
   <?php print render($page['footer']); ?>
 </footer>

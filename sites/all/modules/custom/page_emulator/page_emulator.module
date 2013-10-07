@@ -101,7 +101,7 @@ function _get_nearest_node_page($past = false)
 
   if(!sizeof($result))
   {
-    $time = $past?'future':'antérieure';
+    $time = !$past?'future':'antérieure';
     $return = t('Désolé, il n\'y a pas de date @time', array('@time' => $time));
     return $return;
  }

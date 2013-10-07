@@ -42,13 +42,15 @@ function load_more_preprocess_node(&$vars) {
 function _load_more($nid){
   $node = node_load($nid); 
   $path =  drupal_get_path_alias('node/'.$nid);
-  $view = node_view($node); 
+  $view = node_view($node);
   $result = drupal_render($view);
+  //$fcb = render(facebook_comments_box_block_view('facebook_comments_box'));
   return drupal_json_output(array(
     'node_id' => $nid,
-    'node_content'=>$result,
+    //'node_facebook_comments' => $fcb,
     'node_title'=> $node->title,
     'node_path' => $path,
+    'node_content'=>$result,
     ));
 }
 

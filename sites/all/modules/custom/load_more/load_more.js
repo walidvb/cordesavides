@@ -10,7 +10,7 @@
 			var $view = $('.'+$settings.view_name);
 			var $trigger = $('.'+$settings.item_name);
 			var $targetContainerSelector = '.pane-node-content';
-
+			var $facebookCommentsBoxSelector = '.pane-facebook-comments-box';
 		//---------------------ajax calls
 		var loadFrom = function (nid, triggerIndex){
 			console.log('loadFrom run from ' + nid);
@@ -22,12 +22,18 @@
 				{
 
 					var content = $(response.node_content);
-					
+					console.log(response);
+					var facebookCommentsBox = $(response.node_facebook_comment);
 					targetContainer.html(content);
+					//$($facebookCommentsBoxSelector).html(facebookCommentsBox);
 					$('body').trigger('item-loaded', triggerIndex, response);
 					var title = window.document.title = response.node_title + ' | ' + settings.load_more.site_name;
 					Drupal.attachBehaviors(content);
-
+					Drupal.attachBehaviors(facebookCommentsBox);
+					
+					//Fix easy-social
+					twttr.widgets.load();
+					gapi.plusone.go();
 					if(pushState)
 					{
 						History.pushState({
@@ -54,7 +60,7 @@
 
 		$trigger.once('load_more', function(){
 			var $this = $(this);
-			$this.addClass('load-more-trigger')
+			$this.addClass('clickable')
 			.bind('click', function(){
 				var nid = $mapping[$this.index()];
 				pushState = true;

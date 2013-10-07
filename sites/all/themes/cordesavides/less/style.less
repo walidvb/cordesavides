@@ -9,7 +9,7 @@
 
 // Base-theme overrides.
 @import 'overrides.less';
-
+ 
 // Theme specific.
 @import 'header.less';
 @import 'content.less';
@@ -24,9 +24,52 @@
 	label{
 		display: none;
 	}
-
+	.form-control{
+		border-bottom: @bordeaux 1px solid;
+	}
 	.field-widget-email-textfield, .form-wrapper{
 		display: inline-block;
 		float: left;
 	}
+}
+
+.form-actions .btn{
+	background: @button-bg;
+	color: @button-color;
+	border: none;
+	&:hover{
+		background: @button-hover-bg;
+	}
+}
+.clickable{
+	cursor: pointer;
+}
+
+#site-name{
+	display: none;
+}
+h2:not(.calendar-event-title){
+	background-color: @body-bg-2;
+	padding: 0px 5px;
+	line-height: 1.3;
+}
+.panel-footer{
+	background: transparent;
+	border: none;
+}
+
+.footer{
+	background-color: @body-bg;
+	a{
+		color: @bordeaux;
+	}
+	.credits{
+		color: lighten(@body-bg-2, 15%);
+		a{
+			color: lighten(@body-bg-2, 25%)
+		}
+	}
+}
+a:focus{
+	outline: 5px auto @bordeaux; 
 }

@@ -3,7 +3,7 @@
 	height: 0; 
 	border-top: 10px solid transparent;
 	border-bottom: 10px solid transparent; 
-	border-left:10px solid white; 
+	border-left:10px solid ; 
 	text-indent: -9999px;
 	float: right;
 }
@@ -13,7 +13,7 @@
 	height: 0; 
 	border-top: 10px solid transparent;
 	border-bottom: 10px solid transparent; 
-	border-right:10px solid white; 
+	border-right:10px solid ; 
 	text-indent: -9999px;
 	float: left;
 }
@@ -24,8 +24,6 @@
 	-moz-border-radius: 0px!important;
 	border-radius: 0px!important;
 	background: none!important;
-	filter: Alpha(Opacity=50);
-	opacity: 0.5;
 	position: relative;
 	top: -32px;
 }
