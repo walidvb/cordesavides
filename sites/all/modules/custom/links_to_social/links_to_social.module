@@ -1,0 +1,77 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+function links_to_social_preprocess_node(&$vars)
+{
+    drupal_add_css(drupal_get_path('module', 'links_to_social') . '/links_to_social.css');
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function links_to_social_field_formatter_info() {
+  $info['links_to_social'] = array(
+    'label' => t('Icon from title only'),
+    'field types' => array('link_field'),
+    'module' => 'links_to_social',
+    'settings' => array(
+      'format' => 'hi',
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function links_to_social_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = t('Display an icon in place of the link to the social network');
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+
+function links_to_social_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array(); // Initialize the var
+  $settings = $display['settings']; // get the settings
+  $options = array(
+    'html'        => TRUE, // This tells Drupal that we're sending HTML, not plain text, otherwise it would encode it
+    'attributes'  => array(
+      //'title' => $tooltip, // This sets our tooltip
+      ),
+    );
+    foreach($items as $index => $item)
+    {
+      $element[$index]['#type'] = 'markup';
+      $link = _l_icon($item['title'], $item['url']);
+      $element[$index]['#markup'] = $link; // Assign it to the #markup of the element
+    }
+    $element['#prefix'] = '<div class="link-to-social">';
+    $element['#suffix'] = '</div>';
+  return $element;
+}
+
+//the function rendering a link as an icon.
+function _l_icon($name, $url, $options = array())
+{
+  $name_ = "<span class=\"hidden\">$name</span>";
+  $default = array(
+    'html' => true,
+    'attributes' => array(
+      'target' => '_blank',
+      'data-rel' => $name,
+      'class' => $name . ' link-to-social-item',
+      ),
+    );
+  $options = array_merge($options, $default);
+  $l = l($name_, $url, $options);
+  //dpm($l);
+  return $l;
+}
