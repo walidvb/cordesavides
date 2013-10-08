@@ -3,6 +3,7 @@
 // --------------------------------------------------
 @body-color: 			#c09f42;
 @body-bg: 				#120E09;
+.border-top(){          border-top: solid 1px darken(@body-color, 35%); }
 @bordeaux:				#AC4209; //#A03F30
 @body-bg-2: 			#201a0d;
 @body-bg-2-hover: 		lighten(@body-bg-2, 3%);
@@ -20,7 +21,9 @@
 @link-color: 			@button-bg;
 @link-hover-color: 		@bordeaux;
 
-
+.bg_opacity(@color: @white, @alpha: 1) {
+           background: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);}
+           
 .stripes(){
 	background-image: linear-gradient(-45deg, transparent 25%, @bordeaux 25%, @bordeaux 50%, transparent 50%, transparent 75%, @bordeaux 75%, @bordeaux);
     background-size: 50px 50px;

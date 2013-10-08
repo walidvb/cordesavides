@@ -4,7 +4,7 @@
 	font-size: @font-size-xlarge;
 	font-family: @font-family-second;
 	a{
-			background-color: @nav-link-bg;
+		background-color: @nav-link-bg;
 	}
 }
 // 
@@ -17,6 +17,9 @@
 	padding: 20px 10px;
 	font-size: @font-size-xlarge;
 	font-family: @font-family-second;
+	.col-md-4();
+	.col-sm-6();
+	margin-bottom: 20px;
 	a, span{
 		color: @body-color;
 	}
@@ -30,25 +33,80 @@
 		margin-top: 0px;
 	}
 }
+.owl-carousel.open .owl-wrapper{
+	width: auto!important;
+	-webkit-transform: translate3d(0px, 0px, 0px)!important;
+	transform: translate3d(0px, 0px, 0px)!important;
+	-moz-transform: translate3d(0px, 0px, 0px)!important;
 
-.owl-prev,.owl-next, .owl-page{
-	opacity: 1!important;
 }
-.owl-prev{
-	border-right-color: @button-bg!important;
-		&:hover{
-		border-right-color: @button-hover-bg!important;
+.owl-carousel.open .owl-controls{
+	display: none;
+}
+.owl-calendar-trigger{
+	text-align: center;
+	margin-top: 8px;
+	@media @mobile{
+		&{
+			margin-top: -35px;
+		}
+		.open &{
+			margin-top: 0px;
+		}
+	}
+	.open & .help{
+		display: none!important;
 	}
 }
-.owl-next{
-	border-left-color: @button-bg!important;
-		&:hover{
-		border-left-color: @button-hover-bg!important;
+
+.owl-next, .owl-prev{
+	@media @mobile{
+		&{
+			top: auto;
+		}
+		.open &{
+			display: none!important;
+		}
 	}
 }
-.owl-page span{
-	background-color: @button-bg!important;
+.owl-controls{
+	.make-md-column(8);
+	.make-sm-column(6);
+	.make-xs-column(12);
+	@media @mobile{
+		.owl-pagination{
+			display: none;
+		}
+	}
+	.owl-prev,.owl-next, .owl-page{
+		opacity: 1!important;
+		margin: none;
+		.open & {
+			display: none!important;
+
+		}
+		@media @mobile{
+			&{
+				display: none;
+			}
+		}
+	}
+	.owl-prev{
+		border-right-color: @button-bg!important;
 		&:hover{
-		background-color: @button-hover-bg!important;
+			border-right-color: @button-hover-bg!important;
+		}
+	}
+	.owl-next{
+		border-left-color: @button-bg!important;
+		&:hover{
+			border-left-color: @button-hover-bg!important;
+		}
+	}
+	.owl-page span{
+		background-color: @button-bg!important;
+		&:hover{
+			background-color: @button-hover-bg!important;
+		}
 	}
 }

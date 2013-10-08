@@ -5956,7 +5956,7 @@ html.js input.throbbing {
 
 }
 body {
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }
 @media (max-width: 767px) {
   body {
@@ -6009,7 +6009,7 @@ body.admin-menu .navbar-fixed-top {
 }
 .footer {
   padding: 15px 0 6px;
-  border-top: 1px solid #E5E5E5;
+  border-top: solid 1px #3c3114;
 }
 .element-invisible {
   margin: 0;
@@ -6220,6 +6220,11 @@ div.password-suggestions ul {
   padding: 20px 10px;
   font-size: 21px;
   font-family: 'Open Sans Condensed', sans-serif;
+  position: relative;
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
 }
 .calendar-row a,
 .calendar-row span {
@@ -6238,28 +6243,104 @@ div.password-suggestions ul {
 .calendar-row .calendar-event-title {
   margin-top: 0px;
 }
-.owl-prev,
-.owl-next,
-.owl-page {
-  opacity: 1!important;
+.owl-carousel.open .owl-wrapper {
+  width: auto!important;
+  -webkit-transform: translate3d(0px, 0px, 0px) !important;
+  transform: translate3d(0px, 0px, 0px) !important;
+  -moz-transform: translate3d(0px, 0px, 0px) !important;
 }
-.owl-prev {
+.owl-carousel.open .owl-controls {
+  display: none;
+}
+.owl-calendar-trigger {
+  text-align: center;
+  margin-top: 8px;
+}
+@media (max-width: 767px) {
+  .owl-calendar-trigger {
+    margin-top: -35px;
+  }
+  .open .owl-calendar-trigger {
+    margin-top: 0px;
+  }
+}
+.open .owl-calendar-trigger .help {
+  display: none!important;
+}
+@media (max-width: 767px) {
+  .owl-next,
+  .owl-prev {
+    top: auto;
+  }
+  .open .owl-next,
+  .open .owl-prev {
+    display: none!important;
+  }
+}
+.owl-controls {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+@media (min-width: 992px) {
+  .owl-controls {
+    float: left;
+    width: 66.66666666666666%;
+  }
+}
+@media (min-width: 768px) {
+  .owl-controls {
+    float: left;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  .owl-controls .owl-pagination {
+    display: none;
+  }
+}
+.owl-controls .owl-prev,
+.owl-controls .owl-next,
+.owl-controls .owl-page {
+  opacity: 1!important;
+  margin: none;
+}
+.open .owl-controls .owl-prev,
+.open .owl-controls .owl-next,
+.open .owl-controls .owl-page {
+  display: none!important;
+}
+@media (max-width: 767px) {
+  .owl-controls .owl-prev,
+  .owl-controls .owl-next,
+  .owl-controls .owl-page {
+    display: none;
+  }
+}
+.owl-controls .owl-prev {
   border-right-color: #389495 !important;
 }
-.owl-prev:hover {
+.owl-controls .owl-prev:hover {
   border-right-color: #6bc7c8 !important;
 }
-.owl-next {
+.owl-controls .owl-next {
   border-left-color: #389495 !important;
 }
-.owl-next:hover {
+.owl-controls .owl-next:hover {
   border-left-color: #6bc7c8 !important;
 }
-.owl-page span {
+.owl-controls .owl-page span {
   background-color: #389495 !important;
 }
-.owl-page span:hover {
+.owl-controls .owl-page span:hover {
   background-color: #6bc7c8 !important;
+}
+.node {
+  border-top: solid 1px #3c3114;
+  padding-top: 1em;
 }
 .field-name-field-flyer img {
   width: 100%;
@@ -6274,6 +6355,8 @@ div.password-suggestions ul {
   line-height: 1.6;
   font-size: 18px;
   padding: 0px 5px;
+  display: inline-block;
+  width: 100%;
 }
 .artist-details .field-name-field-music-genre,
 .artist-details .field-social {
@@ -6282,19 +6365,23 @@ div.password-suggestions ul {
 .artist-details .link-to-social {
   float: right;
   background-color: #120e09;
+  padding: 2px 2px;
 }
 .artist-details .link-to-social .link-to-social-item {
   float: left;
-}
-.artist-details .link-to-social .link-to-social-item a {
   background-color: #389495;
   color: #d0ecec;
   height: 100%;
   display: inline-block;
   margin: 0px 3px;
 }
-.artist-details .link-to-social .link-to-social-item a:hover {
+.artist-details .link-to-social .link-to-social-item:hover {
   background-color: #6bc7c8;
+  text-decoration: none;
+}
+.artist-details .link-to-social .link-to-social-item:before {
+  font-size: large;
+  width: 23px;
 }
 #cboxOverlay {
   background-color: #120e09;
@@ -6312,9 +6399,9 @@ div.password-suggestions ul {
 .field-body {
   margin-top: 20px;
 }
-.field-name-field-facebook-album {
+.facebook-album {
   position: absolute;
-  top: 80px;
+  top: 20%;
   bottom: 0px;
   overflow-y: auto;
   width: 96%;
@@ -6322,33 +6409,33 @@ div.password-suggestions ul {
   background-color: rgba(18, 14, 9, 0.8);
   -webkit-overflow-scrolling: touch;
 }
-.field-name-field-facebook-album .facebook-album-image {
+.facebook-album .facebook-album-image {
   margin-bottom: 10px;
 }
-.field-name-field-facebook-album .facebook-album-image img {
+.facebook-album .facebook-album-image img {
   margin: auto;
   border: none;
 }
 .easy_social_box {
   height: 111px;
 }
-.pane-facebook-comments-box .pane-title {
+.facebook-comments-box .fcb-title {
   background-color: #201a0d;
   padding: 0px 5px;
+  margin-bottom: 0.4em;
 }
-.pane-facebook-comments-box .pane-title:after {
+.facebook-comments-box .fcb-title:after {
   content: '';
   width: 0px;
   overflow: hidden;
-  display: inline-block;
   transition: all 1s linear;
   -webkit-transition: all 1s linear;
 }
-.pane-facebook-comments-box .pane-title.closed:after {
+.facebook-comments-box .fcb-title.closed:after {
   content: '...';
   width: 30px;
 }
-.pane-facebook-comments-box .pane-title:hover {
+.facebook-comments-box .fcb-title:hover {
   background-color: #2b2311;
 }
 .load-more-loading:after {
@@ -6397,7 +6484,8 @@ div.password-suggestions ul {
 #site-name {
   display: none;
 }
-h2:not(.calendar-event-title) {
+h2:not(.calendar-event-title),
+.h2 {
   background-color: #201a0d;
   padding: 0px 5px;
   line-height: 1.3;
@@ -6407,10 +6495,22 @@ h2:not(.calendar-event-title) {
   border: none;
 }
 .footer {
-  background-color: #120e09;
+  background: rgba(17, 13, 9, 0.85);
+  z-index: 1060;
+}
+@media (max-width: 767px) {
+  .footer {
+    position: relative;
+  }
 }
 .footer a {
   color: #ac4209;
+}
+@media (max-width: 767px) {
+  .footer a {
+    display: block;
+    text-align: center;
+  }
 }
 .footer .credits {
   color: #564623;

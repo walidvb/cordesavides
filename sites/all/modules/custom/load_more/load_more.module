@@ -10,7 +10,6 @@
  */
 function load_more_menu() {
   $items['load_more'] = array(
-    'title' => 'Example Page',
     'page callback' => '_load_more',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
@@ -44,10 +43,8 @@ function _load_more($nid){
   $path =  drupal_get_path_alias('node/'.$nid);
   $view = node_view($node);
   $result = drupal_render($view);
-  //$fcb = render(facebook_comments_box_block_view('facebook_comments_box'));
   return drupal_json_output(array(
     'node_id' => $nid,
-    //'node_facebook_comments' => $fcb,
     'node_title'=> $node->title,
     'node_path' => $path,
     'node_content'=>$result,

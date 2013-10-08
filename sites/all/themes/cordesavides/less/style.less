@@ -48,7 +48,7 @@
 #site-name{
 	display: none;
 }
-h2:not(.calendar-event-title){
+h2:not(.calendar-event-title), .h2{
 	background-color: @body-bg-2;
 	padding: 0px 5px;
 	line-height: 1.3;
@@ -59,9 +59,21 @@ h2:not(.calendar-event-title){
 }
 
 .footer{
-	background-color: @body-bg;
+	.bg_opacity(@body-bg, 0.85);
+	z-index: 1060;
+	@media @mobile{
+		&{
+			position: relative;
+		}
+	}
 	a{
 		color: @bordeaux;
+		@media @mobile{
+			&{
+				display: block;
+				text-align: center;
+			}
+		}
 	}
 	.credits{
 		color: lighten(@body-bg-2, 15%);
