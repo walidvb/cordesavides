@@ -38,9 +38,9 @@ function facebook_comments_box_block_info() {
 }
 
 /**
- * Implements hook_process_HOOK().
+ * Implements hook_preprocess_HOOK().
  */
-function facebook_comments_box_process_node(&$vars) {
+function facebook_comments_box_preprocess_node(&$vars) {
   
   $fcb_node_types = variable_get('facebook_comments_box_default_node_types');
   
@@ -56,6 +56,21 @@ function facebook_comments_box_process_node(&$vars) {
     variable_set('facebook_comments_box_node_is_in_type', false);
     variable_set('facebook_comments_box_node_is_published', false);
   }
+  $block = facebook_comments_box_block_view('facebook_comments_box');
+  $title = '<div class="h2 fcb-title">' . $block['subject'] . '</div>';
+  $content = $block['content'];
+  $fcb = '<div class="facebook-comments-box"> ' . $title . $content . '</div>';
+  $vars['facebook_comments_box'] = $fcb;
+}
+
+/* add field to Display Suite */
+function facebook_comments_box_ds_fields_info($entity_type) {
+  $fields = array();
+  $fields['facebook_comments_box'] = array(
+    'title' => t('Facebook Comments Box'),
+    'field_type' => DS_FIELD_TYPE_PREPROCESS,
+  );
+  return array('node' => $fields);
 }
 /**
  * Implements hook_block_view().
@@ -92,14 +107,14 @@ function facebook_comments_box_block_view($delta = '') {
 
         // Add meta data to the HEAD.
       drupal_add_html_head($metafcb, 'meta-fcb');
-
+      drupal_add_js('http://connect.facebook.net/en_US/all.js#xfbml=1', 'external');
         // Set the title of the block.
       $block['subject'] = t('Commentaires');
 
         // Set the content of the block.
       $fcb_content = '<div class="facebook-comments-box">';
       $fcb_content .= '<div id="fb-root"></div>';
-      $fcb_content .= '<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>';
+      //$fcb_content .= '<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>';
       $fcb_content .= '<fb:comments href="' . $fcb_url . '" ';
       $fcb_content .= ' num_posts="' . check_plain(variable_get('facebook_comments_box_default_comments', 10)) . '" ';
       $fcb_content .= ' width="' . check_plain(variable_get('facebook_comments_box_default_width', 400)) . '" ';
