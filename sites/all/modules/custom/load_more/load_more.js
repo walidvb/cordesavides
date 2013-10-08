@@ -22,18 +22,23 @@
 				{
 
 					var content = $(response.node_content);
-					console.log(response);
-					var facebookCommentsBox = $(response.node_facebook_comment);
-					targetContainer.html(content);
-					//$($facebookCommentsBoxSelector).html(facebookCommentsBox);
+					console.log('ajax-response', response);
+
+					$('.node', targetContainer).replaceWith(content);
+					var script = content.script;
+					$('head').append(script);
 					$('body').trigger('item-loaded', triggerIndex, response);
 					var title = window.document.title = response.node_title + ' | ' + settings.load_more.site_name;
+					console.log('content before attaching behaviors', content);
+					//Attach included scripts
 					Drupal.attachBehaviors(content);
-					Drupal.attachBehaviors(facebookCommentsBox);
-					
+					console.log('content after attaching behaviors', content);
+
 					//Fix easy-social
 					twttr.widgets.load();
 					gapi.plusone.go();
+					FB.XFBML.parse()
+
 					if(pushState)
 					{
 						History.pushState({
@@ -75,7 +80,8 @@
 			History.Adapter.bind(window,'statechange',function(){
 				var State = History.getState();
 				pushState = false;
-				loadFrom(State.data.nid, State.data.triggerIndex);
+				//loadFrom(State.data.nid, State.data.triggerIndex);
+				console.log("loaded from", State);
 			});
 			History.replaceState({'nid': settings.shared.nid, }, document.title, window.location.href);
 		});
