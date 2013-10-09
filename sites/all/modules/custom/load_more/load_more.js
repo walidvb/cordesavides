@@ -29,7 +29,7 @@
 					$('head').append(script);
 					$('body').trigger('item-loaded', triggerIndex, response);
 					var title = window.document.title = response.node_title + ' | ' + settings.load_more.site_name;
-					console.log('content before attaching behaviors', content);
+					$('h1').html(response.node_title);
 					//Attach included scripts
 					Drupal.attachBehaviors(content);
 					console.log('content after attaching behaviors', content);

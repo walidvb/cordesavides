@@ -13,27 +13,54 @@
 				})
 			});
 			//Add Comments title as trigger for the box
-			var $commentTitle = $('.fcb-title', context);
-			$commentTitle.addClass('clickable closed')
+			var $blockTitle = $('.h2', context);
+			console.log();
+			$blockTitle.addClass('clickable')
 			.bind('click', function()
 			{
-				var $this = $(this);
-				$this.next().slideToggle( function()
+				var title = $(this);
+				var block = title.next()
+				console.log(title);
+				console.log(block);
+				block.slideToggle( function()
 				{
-					var $comments = $(this);
-					if(!$this.toggleClass('closed').hasClass('closed'))
+					if(!title.toggleClass('closed').hasClass('closed'))
 					{
 						$('html, body').animate(
 						{
-							scrollTop: $comments.offset().top,
+							scrollTop: block.offset().top,
 						});
 					};
 				});
 			})
-			.next().slideToggle(function()
+			//Collapse all on small screens
+			if($(window).height() >	600 && $(window).width() < 770)
 			{
-				$commentTitle.addClass('clickable closed')
-			});
+				$blockTitle.trigger('click');
+			}
+			else
+			{
+				$('.fcb-title').addClass('clickable').trigger('click');
+			}
+			$(window).resize(function(){
+				if(($(window).height() < 600 && $(window).width() > 770) || $(window).width() > 770)
+				{
+					var block = $blockTitle.next();
+					block.slideDown( function()
+					{
+						$blockTitle.removeClass('closed');
+					});
+				}
+				else
+				{
+					$blockTitle.addClass('clickable');
+					var block = $blockTitle.next();
+					block.slideUp( function()
+					{
+						$blockTitle.addClass('closed');
+					});
+				}
+			})
 		}
 	}
 }(jQuery))

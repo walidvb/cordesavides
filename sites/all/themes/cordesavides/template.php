@@ -8,7 +8,7 @@
  * Bootstrap theme wrapper function for the primary menu links
  */
 function cordesavides_menu_tree__primary(&$variables) {
-  return '<ul class="main-menu menu nav navbar-nav col-md-4 col-sm-6">' . $variables['tree'] . '</ul>';
+  return '<ul class="main-menu menu nav navbar-nav col-md-2 col-sm-6">' . $variables['tree'] . '</ul>';
 }
 
 //set youtube frame width to 100%
@@ -30,6 +30,9 @@ function cordesavides_preprocess_node(&$vars) {
   //dpm($vars);
 }
 
+function cordesavides_preprocess_pane(&$variables){
+  dpm($variables);
+}
 /*
 function cordesavides_form_alter(&$vars){
 

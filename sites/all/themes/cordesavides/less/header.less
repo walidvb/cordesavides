@@ -10,9 +10,14 @@
 // 
 .panel-col-top{
 	.border(bottom);
-	padding-bottom: 50px;
+	//padding-bottom: 50px;
 }
 @cal-height: 100px;
+
+.open .owl-item{
+	.make-md-column(6)!important;
+	margin-bottom: 20px;
+}
 
 .calendar-row{
 	background-color: darken(@body-color, 40%);
@@ -20,7 +25,6 @@
 	padding: 20px 10px;
 	font-size: @font-size-xlarge;
 	font-family: @font-family-second;
-	margin-bottom: 20px;
 	a, span{
 		color: @body-color;
 	}
@@ -53,6 +57,12 @@
 	.open & .help{
 		display: none!important;
 	}
+	.has-switch span, .has-switch label{
+	  font-family: "fontello";
+	  font-size: x-large;
+	  font-style: normal;
+	  font-weight: normal;
+	}
 }
 
 .owl-next, .owl-prev{
@@ -66,10 +76,10 @@
 	}
 }
 .owl-controls{
-		.make-xs-column(12);
-			.make-sm-column(6);
-	.make-md-column(8);
 
+	// .make-xs-column(12);
+	// .make-sm-column(6);
+	// .make-md-column(8);
 
 	@media @mobile{
 		.owl-pagination{
