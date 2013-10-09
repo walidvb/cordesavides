@@ -14,53 +14,58 @@
 			});
 			//Add Comments title as trigger for the box
 			var $blockTitle = $('.h2', context);
-			console.log();
-			$blockTitle.addClass('clickable')
-			.bind('click', function()
-			{
-				var title = $(this);
-				var block = title.next()
-				console.log(title);
-				console.log(block);
-				block.slideToggle( function()
+			$blockTitle.once('myJS', function(){
+				$(this).addClass('clickable')
+				.bind('click', function()
 				{
-					if(!title.toggleClass('closed').hasClass('closed'))
+					var title = $(this);
+					var block = title.next()
+
+					block.slideToggle( function()
 					{
-						$('html, body').animate(
+						if(!title.toggleClass('closed').hasClass('closed'))
 						{
-							scrollTop: block.offset().top,
-						});
-					};
-				});
-			})
+							$('html, body').animate(
+							{
+								scrollTop: block.offset().top,
+							});
+						};
+					});
+				})
+			});
+
 			//Collapse all on small screens
-			if($(window).height() >	600 && $(window).width() < 770)
+			if($(window).width() < 770)
 			{
 				$blockTitle.trigger('click');
 			}
 			else
 			{
-				$('.fcb-title').addClass('clickable').trigger('click');
+				console.log('clicked on fb');
+				$('.fcb-title', context).trigger('click');
 			}
-			$(window).resize(function(){
-				if(($(window).height() < 600 && $(window).width() > 770) || $(window).width() > 770)
-				{
-					var block = $blockTitle.next();
-					block.slideDown( function()
+			//$(window).once('myJS', function(){
+				$(window).resize(function(){
+					if($(window).width() > 770)
 					{
-						$blockTitle.removeClass('closed');
-					});
-				}
-				else
-				{
-					$blockTitle.addClass('clickable');
-					var block = $blockTitle.next();
-					block.slideUp( function()
+						var concernedBlocks = $blockTitle.not('.fcb-title');
+						var block = concernedBlocks.next();
+						block.slideDown( function()
+						{
+							concernedBlocks.removeClass('closed');
+						});
+					}
+					else
 					{
-						$blockTitle.addClass('closed');
-					});
-				}
-			})
+						$blockTitle.addClass('clickable');
+						var block = $blockTitle.next();
+						block.slideUp( function()
+						{
+							$blockTitle.addClass('closed');
+						});
+					}
+				});
+			//});
 		}
 	}
 }(jQuery))
