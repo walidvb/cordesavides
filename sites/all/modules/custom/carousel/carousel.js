@@ -19,7 +19,6 @@
 					itemsMobile : [479,1],
 				};
 				var owl = $(wrapperSelector).owlCarousel(owlSettings).data('owlCarousel');
-				console.log(settings);
 				var currentIndex = settings.load_more.mapping.indexOf(settings.load_more.nid);
 
 				owl.goTo(currentIndex);
@@ -49,7 +48,6 @@
 				var bigWidth = $('.owl-wrapper').width();
 					//Bind to the switch moving
 				$('body').bind('switch-change', function(e, data){
-					console.log(data.value);
 					if(!data.value)
 					{
 						$('body, html').animate(
@@ -70,7 +68,7 @@
 					{
 							$('.owl-wrapper').animate(
 								{
-									'width': $('.owl-carousel').width()
+									'width': $('.owl-carousel').width()+1
 								},
 								function(){$('.owl-carousel').addClass('open');
 							});

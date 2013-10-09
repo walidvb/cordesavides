@@ -21,8 +21,8 @@
 
 .calendar-row{
 	background-color: darken(@body-color, 40%);
-	height: @cal-height;
-	padding: 20px 10px;
+	min-height: @cal-height;
+	padding: 20px 10px 1px;
 	font-size: @font-size-xlarge;
 	font-family: @font-family-second;
 	a, span{
@@ -38,8 +38,11 @@
 		margin-top: 0px;
 	}
 }
+
+.owl-carousel{
+	display:inline-block!important;
+}
 .owl-carousel.open .owl-wrapper{
-	width: auto!important;
 	-webkit-transform: translate3d(0px, 0px, 0px)!important;
 	transform: translate3d(0px, 0px, 0px)!important;
 	-moz-transform: translate3d(0px, 0px, 0px)!important;
@@ -59,16 +62,18 @@
 	}
 	.has-switch span, .has-switch label{
 	  font-family: "fontello";
-	  font-size: x-large;
+	  font-size: @font-size-xlarge;
 	  font-style: normal;
 	  font-weight: normal;
+	  color: darken(@body-color, 20%)!important;
+	  text-transform: uppercase;
 	}
 }
 
 .owl-next, .owl-prev{
 	@media @mobile{
 		&{
-			top: auto;
+			top: -80px;
 		}
 		.open &{
 			display: none!important;

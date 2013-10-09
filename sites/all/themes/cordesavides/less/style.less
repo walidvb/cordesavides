@@ -20,6 +20,20 @@
 #admin-toolbar *{
 	box-sizing: content-box;
 }
+.close{
+	opacity: 5!important;
+}
+
+
+.navbar-collapse{
+	position: relative;
+	#block-multiblock-2{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		text-align: right;
+	}
+}
 
 .entitytype-newsletter-form{
 	label{
@@ -30,7 +44,7 @@
 	}
 	.field-widget-email-textfield, .form-wrapper{
 		display: inline-block;
-		float: left;
+		float: right;
 	}
 }
 
@@ -55,6 +69,11 @@
 	}
 	.logo{
 		width: 100%;
+		@media @mobile {
+			img{
+				height: 150px;
+			}
+		}
 	}
 }
 h2:not(.calendar-event-title), .h2{
@@ -69,6 +88,7 @@ header .container{
 	.border(bottom);
 	padding-bottom: 1em;
 }
+
 .footer{
 	.bg_opacity(@body-bg, 0.85);
 	z-index: 1060;
