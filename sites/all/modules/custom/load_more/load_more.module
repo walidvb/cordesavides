@@ -31,7 +31,8 @@ function load_more_preprocess_node(&$vars) {
     $settings = array(
       'view_name' => $view_name,
       'item_name' => 'owl-item',
-      'site_name' => $site_name
+      'site_name' => $site_name,
+      'nid' => $vars['nid'],
       );
     drupal_add_js(array('load_more' => $settings), 'setting');
   }
@@ -64,7 +65,7 @@ function load_more_preprocess_views_view_fields(&$vars){
     $settings = array(
       'mapping' => $mapping
       );
-    drupal_add_js(array('shared' => $settings), 'setting');
+    drupal_add_js(array('load_more' => $settings), 'setting');
   }
 }
 

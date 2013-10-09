@@ -3,7 +3,8 @@
 // --------------------------------------------------
 @body-color: 			#c09f42;
 @body-bg: 				#120E09;
-.border-top(){          border-top: solid 1px darken(@body-color, 35%); }
+.border(top){           border-top: solid 1px darken(@body-color, 35%); }
+.border(bottom){        border-bottom: solid 1px darken(@body-color, 35%); }
 @bordeaux:				#AC4209; //#A03F30
 @body-bg-2: 			#201a0d;
 @body-bg-2-hover: 		lighten(@body-bg-2, 3%);
@@ -12,7 +13,10 @@
 @button-bg: 			#389495;
 @button-color: 			#D0ECEC;
 @button-hover-bg: 		lighten(@button-bg, 20%);
-
+.h2(){background-color: @body-bg-2;
+        padding: @padding;
+        margin-bottom: 0.4em;
+        line-height: 1.3;}
 
 @nav-link-color: 		#554319;
 @nav-link-bg: 			@body-bg-2;

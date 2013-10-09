@@ -25,5 +25,9 @@
 	border-radius: 0px!important;
 	background: none!important;
 	position: relative;
-	top: -32px;
+	top: -35px;
+}
+
+.owl-calendar-trigger{
+	height: 30px;
 }

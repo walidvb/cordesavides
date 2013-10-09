@@ -5,7 +5,7 @@
 	Drupal.behaviors.load_more = {
 		attach: function(context, settings){
 			var $settings = settings.load_more;
-			var $mapping = settings.shared.mapping;
+			var $mapping = $settings.mapping;
 
 			var $view = $('.'+$settings.view_name);
 			var $trigger = $('.'+$settings.item_name);
@@ -83,7 +83,7 @@
 				//loadFrom(State.data.nid, State.data.triggerIndex);
 				console.log("loaded from", State);
 			});
-			History.replaceState({'nid': settings.shared.nid, }, document.title, window.location.href);
+			History.replaceState({'nid': settings.load_more.nid, }, document.title, window.location.href);
 		});
 	}
 }

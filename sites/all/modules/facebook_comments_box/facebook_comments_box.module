@@ -50,17 +50,18 @@ function facebook_comments_box_preprocess_node(&$vars) {
     variable_set('facebook_comments_box_node_is_published', true);
     variable_set('facebook_comments_box_node_title', check_plain($vars['title']));
     variable_set('facebook_comments_box_node_url', $vars['node_url']);
+    $block = facebook_comments_box_block_view('facebook_comments_box');
+    $title = '<div class="h2 fcb-title">' . $block['subject'] . '</div>';
+    $content = $block['content'];
+    $fcb = '<div class="facebook-comments-box"> ' . $title . $content . '</div>';
+    $vars['facebook_comments_box'] = $fcb;
   }
   else
   {
     variable_set('facebook_comments_box_node_is_in_type', false);
     variable_set('facebook_comments_box_node_is_published', false);
   }
-  $block = facebook_comments_box_block_view('facebook_comments_box');
-  $title = '<div class="h2 fcb-title">' . $block['subject'] . '</div>';
-  $content = $block['content'];
-  $fcb = '<div class="facebook-comments-box"> ' . $title . $content . '</div>';
-  $vars['facebook_comments_box'] = $fcb;
+
 }
 
 /* add field to Display Suite */

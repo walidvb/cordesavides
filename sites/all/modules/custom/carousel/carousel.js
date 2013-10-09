@@ -1,4 +1,4 @@
-var owl;
+
 (function($){
 	Drupal.behaviors.owl = {
 		attach: function(context, settings) {
@@ -18,8 +18,9 @@ var owl;
 					itemsTablet: [768,2],
 					itemsMobile : [479,1],
 				};
-				owl = $(wrapperSelector).owlCarousel(owlSettings).data('owlCarousel');
-				var currentIndex = settings.shared.mapping.indexOf(settings.shared.nid);
+				var owl = $(wrapperSelector).owlCarousel(owlSettings).data('owlCarousel');
+				console.log(settings);
+				var currentIndex = settings.load_more.mapping.indexOf(settings.load_more.nid);
 
 				owl.goTo(currentIndex);
 				var className = 'calendar-item-active';
@@ -32,6 +33,7 @@ var owl;
 					$('.owl-item:nth-child(' + (triggerIndex+1) + ')').addClass(className);
 					owl.goTo(triggerIndex);
 					$(this).trigger('viewChange', true);
+					$('#allDates, .make-switch').bootstrapSwitch('setState', false);
 				});
 
 				//-------------Body
@@ -39,17 +41,16 @@ var owl;
 				var $controls = $('.owl-controls').addClass('col-md-8 col-sm-6');
 				var showText = 'Afficher toutes les dates';
 				var hideText = 'Retour à la vue normale';
-				var $allDates = $('<span class="owl-calendar-trigger col-md-4 col-sm-6 col-xs-12 pull-right"><span  class="visible-xs help">Glisser ou </span><a class="link" href="#"">'+ showText +'</a></span>');
-				var $calendar = $('.owl-wrapper');
-				$allDates.insertAfter($controls);
-				$allDates.bind('click', function(e){
-					e.preventDefault();
-					var isOpen = $('.owl-carousel').hasClass('open');
-					$(this).trigger('viewChange', isOpen);
-				});
+				//var $allDates = $('<span class="owl-calendar-trigger col-md-4 col-sm-6 col-xs-12 pull-right"><span  class="visible-xs help">Glisser ou </span><a class="link" href="#"">'+ showText +'</a></span>');
+				//var $allDates = $('<div class="make-switch" data-on-label="<i class=\'icon-ok icon-white\'>a</i>" data-off-label="<i class=\'icon-remove\'>Afficher toutes les dates</i>"><input type="checkbox"></div>')
+				var $allDates = $('<input id="allDates" type="checkbox"/>')
+					.prependTo($('.view-id-calendar'))
+					.wrap('<div class="pull-right col-md-4 col-sm-6 col-xs-12 owl-calendar-trigger" ><div class="make-switch" data-off="danger" data-on-label="o" data-off-label="i"/></div>');
 
-				$('body').bind('viewChange', function(e, isOpen){
-					if(isOpen)
+					//Bind to the switch moving
+				$('body').bind('switch-change', function(e, data){
+					console.log(data.value);
+					if(!data.value)
 					{
 						$('body, html').animate(
 						{
@@ -64,7 +65,7 @@ var owl;
 					{
 						$('.owl-carousel').addClass('open');
 					}
-					$('a', $allDates).text(!isOpen ? hideText : showText);
+					$('a', $allDates).text(data.value ? hideText : showText);
 				});
 			});
 		}
