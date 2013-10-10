@@ -82,19 +82,19 @@ var first = true;
 		});
 
 		History.Adapter.bind(window,'statechange',function(){
-			console.log('first is ' , first);
+			//console.log('first is ' , first);
 			if(!first)
 			{
-				console.log('will change');
+				//console.log('will change');
 				var State = History.getState();
 				pushState = false;
 				loadFrom(State.data.nid, State.data.triggerIndex);
-				console.log("State", State);
+				//console.log("State", State);
 			}
 			first = false;
 
 		});
-		console.log(settings.load_more.nid)
+		//console.log(settings.load_more.nid)
 		History.replaceState({'nid': settings.load_more.nid, 'triggerIndex': settings.load_more.mapping.indexOf(settings.load_more.nid)}, document.title, window.location.href);
 	});
 }

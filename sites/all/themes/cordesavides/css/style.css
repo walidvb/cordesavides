@@ -6331,6 +6331,12 @@ div.password-suggestions ul {
   -o-transition: all 500ms cubic-bezier(0.315, -0.37, 0.285, 1.32);
   transition: all 500ms cubic-bezier(0.315, -0.37, 0.285, 1.32);
 }
+.owl-item.active {
+  -webkit-transform: scale3d(1, 1, 1);
+}
+.owl-carousel:not(.open) .owl-item:not(.active) {
+  -webkit-transform: scale3d(0.95, 0.95, 1);
+}
 @media (max-width: 767px) {
   .view-calendar {
     overflow: hidden;
@@ -6353,12 +6359,6 @@ div.password-suggestions ul {
   }
   .owl-carousel:not(.open) .owl-controls .owl-pagination {
     display: none;
-  }
-  .owl-item.active {
-    -webkit-transform: scale3d(1, 1, 1);
-  }
-  .owl-carousel:not(.open) .owl-item:not(.active) {
-    -webkit-transform: scale3d(0.95, 0.95, 1);
   }
 }
 .owl-carousel.open .owl-wrapper {
@@ -6387,7 +6387,6 @@ div.password-suggestions ul {
   font-style: normal;
   font-weight: normal;
   color: #756127 !important;
-  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .owl-next,
@@ -6399,40 +6398,44 @@ div.password-suggestions ul {
     display: none!important;
   }
 }
-.owl-controls .owl-prev,
-.owl-controls .owl-next,
-.owl-controls .owl-page {
+.owl-theme .owl-controls {
+  height: 40px;
+  margin-top: 0px;
+}
+.owl-theme .owl-controls .owl-prev,
+.owl-theme .owl-controls .owl-next,
+.owl-theme .owl-controls .owl-page {
   opacity: 1!important;
   margin: none;
 }
-.open .owl-controls .owl-prev,
-.open .owl-controls .owl-next,
-.open .owl-controls .owl-page {
+.open .owl-theme .owl-controls .owl-prev,
+.open .owl-theme .owl-controls .owl-next,
+.open .owl-theme .owl-controls .owl-page {
   display: none!important;
 }
 @media (max-width: 767px) {
-  .owl-controls .owl-prev,
-  .owl-controls .owl-next,
-  .owl-controls .owl-page {
+  .owl-theme .owl-controls .owl-prev,
+  .owl-theme .owl-controls .owl-next,
+  .owl-theme .owl-controls .owl-page {
     display: none;
   }
 }
-.owl-controls .owl-prev {
+.owl-theme .owl-controls .owl-prev {
   border-right-color: #389495 !important;
 }
-.owl-controls .owl-prev:hover {
+.owl-theme .owl-controls .owl-prev:hover {
   border-right-color: #6bc7c8 !important;
 }
-.owl-controls .owl-next {
+.owl-theme .owl-controls .owl-next {
   border-left-color: #389495 !important;
 }
-.owl-controls .owl-next:hover {
+.owl-theme .owl-controls .owl-next:hover {
   border-left-color: #6bc7c8 !important;
 }
-.owl-controls .owl-page span {
+.owl-theme .owl-controls .owl-page span {
   background-color: #389495 !important;
 }
-.owl-controls .owl-page span:hover {
+.owl-theme .owl-controls .owl-page span:hover {
   background-color: #6bc7c8 !important;
 }
 .pane-event-content .pane-title {
@@ -7054,6 +7057,9 @@ div.password-suggestions ul {
 }
 .close {
   opacity: 5!important;
+}
+#navbar {
+  margin-bottom: 10px;
 }
 .navbar-collapse {
   position: relative;

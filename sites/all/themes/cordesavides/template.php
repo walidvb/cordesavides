@@ -26,12 +26,8 @@ function cordesavides_preprocess_node(&$vars) {
   {
     drupal_add_js(drupal_get_path('theme', 'cordesavides') . '/myJS.js', 'file');
     drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.1/masonry.pkgd.js', 'external');
+    drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.2.2/mousetrap.min.js', 'external');
   }
-  //dpm($vars);
-}
-
-function cordesavides_preprocess_pane(&$variables){
-  dpm($variables);
 }
 /*
 function cordesavides_form_alter(&$vars){
