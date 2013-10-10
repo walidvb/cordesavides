@@ -43,10 +43,14 @@ function _load_more($nid){
   $node = node_load($nid); 
   $path =  drupal_get_path_alias('node/'.$nid);
   $view = node_view($node);
+  //$title = $node->title;
+  $artist  = field_get_items('node',$node, 'field_artiste');
+  $title = $artist[0]['safe_value'];
   $result = drupal_render($view);
+
   return drupal_json_output(array(
     'node_id' => $nid,
-    'node_title'=> $node->title,
+    'node_title'=> $title,
     'node_path' => $path,
     'node_content'=>$result,
     ));

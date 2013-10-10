@@ -5,6 +5,7 @@
 	  'uri'  => 'http://localhost/cordesavides',
 	 	  'path-aliases' => array(
     '%files' => 'sites/default/files',
+    '%site' => 'sites/all/',
     '%modules' => 'sites/all/modules',
     '%themes' => 'sites/all/themes',
     '%notfiles' => 'sites/all',
@@ -17,9 +18,9 @@
 	  'root' => '/home2/vbbrosne/public_html/cordesavides',
 	  'remote-user' => 'vbbrosne',
 	  'remote-host' => 'vbbros.net',
-	  //'remote-password' => 'Coudrette236',
 	  	  'path-aliases' => array(
     '%files' => 'sites/default/files',
+    '%site' => 'sites/all/',
     '%modules' => 'sites/all/modules',
     '%themes' => 'sites/all/themes',
     '%notfiles' => 'sites/all',

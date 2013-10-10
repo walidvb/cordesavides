@@ -77,16 +77,18 @@
 	}
 }
 
-.owl-carousel.open .owl-wrapper{
-	-webkit-transform: translate3d(0px, 0px, 0px)!important;
-	transform: translate3d(0px, 0px, 0px)!important;
-	-moz-transform: translate3d(0px, 0px, 0px)!important;
-	margin: auto;
+.owl-carousel.open{ 
+	.owl-wrapper{
+		-webkit-transform: translate3d(0px, 0px, 0px)!important;
+		transform: translate3d(0px, 0px, 0px)!important;
+		-moz-transform: translate3d(0px, 0px, 0px)!important;
+		margin: auto;
+	}
+	.owl-controls{
+		display: none!important;
+	}
+}
 
-}
-.owl-carousel.open .owl-controls{
-	display: none;
-}
 .owl-calendar-trigger{
 	text-align: center;
 	margin-bottom: 1em;

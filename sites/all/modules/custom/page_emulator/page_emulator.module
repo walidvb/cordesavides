@@ -60,7 +60,7 @@ function page_emulator_menu() {
     );
 
   $items['agenda'] = array(
-    'title' => t('Agenda'),
+    'title' => t('Programme'),
     'page callback' => '_get_nearest_node_page',
     'page arguments' => array(false),
     'access arguments' => array('access content'),

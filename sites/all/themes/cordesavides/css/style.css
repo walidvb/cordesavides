@@ -6368,7 +6368,7 @@ div.password-suggestions ul {
   margin: auto;
 }
 .owl-carousel.open .owl-controls {
-  display: none;
+  display: none!important;
 }
 .owl-calendar-trigger {
   text-align: center;
@@ -6457,7 +6457,7 @@ div.password-suggestions ul {
 .field-date {
   display: none;
 }
-@media (min-width: 479px) and (max-width: 979px) {
+@media (min-width: 479px) and (max-width: 767px) {
   .field-date {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 18px;
@@ -6831,18 +6831,18 @@ div.password-suggestions ul {
 .has-switch span.switch-left {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#201a0d), to(#2b2311));
-  background-image: -webkit-linear-gradient(top, #201a0d, 0%, #2b2311, 100%);
-  background-image: -moz-linear-gradient(top, #201a0d 0%, #2b2311 100%);
-  background-image: linear-gradient(to bottom, #201a0d 0%, #2b2311 100%);
-  background-color: #241e0f;
-  background-image: -moz-linear-gradient(top, #201a0d, #2b2311);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#201a0d), to(#2b2311));
-  background-image: -webkit-linear-gradient(top, #201a0d, #2b2311);
-  background-image: -o-linear-gradient(top, #201a0d, #2b2311);
-  background-image: linear-gradient(to bottom, #201a0d, #2b2311);
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#19140a), to(#2b2311));
+  background-image: -webkit-linear-gradient(top, #19140a, 0%, #2b2311, 100%);
+  background-image: -moz-linear-gradient(top, #19140a 0%, #2b2311 100%);
+  background-image: linear-gradient(to bottom, #19140a 0%, #2b2311 100%);
+  background-color: #201a0d;
+  background-image: -moz-linear-gradient(top, #19140a, #2b2311);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#19140a), to(#2b2311));
+  background-image: -webkit-linear-gradient(top, #19140a, #2b2311);
+  background-image: -o-linear-gradient(top, #19140a, #2b2311);
+  background-image: linear-gradient(to bottom, #19140a, #2b2311);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff201a0d', endColorstr='#ff2b2311', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff19140a', endColorstr='#ff2b2311', GradientType=0);
   border-color: #2b2311 #2b2311 #000000;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #2b2311;
@@ -6875,18 +6875,18 @@ div.password-suggestions ul {
 .has-switch span.switch-info {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#322914), to(#2b2311));
-  background-image: -webkit-linear-gradient(top, #322914, 0%, #2b2311, 100%);
-  background-image: -moz-linear-gradient(top, #322914 0%, #2b2311 100%);
-  background-image: linear-gradient(to bottom, #322914 0%, #2b2311 100%);
-  background-color: #2f2613;
-  background-image: -moz-linear-gradient(top, #322914, #2b2311);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#322914), to(#2b2311));
-  background-image: -webkit-linear-gradient(top, #322914, #2b2311);
-  background-image: -o-linear-gradient(top, #322914, #2b2311);
-  background-image: linear-gradient(to bottom, #322914, #2b2311);
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#3d3219), to(#2b2311));
+  background-image: -webkit-linear-gradient(top, #3d3219, 0%, #2b2311, 100%);
+  background-image: -moz-linear-gradient(top, #3d3219 0%, #2b2311 100%);
+  background-image: linear-gradient(to bottom, #3d3219 0%, #2b2311 100%);
+  background-color: #362c16;
+  background-image: -moz-linear-gradient(top, #3d3219, #2b2311);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3d3219), to(#2b2311));
+  background-image: -webkit-linear-gradient(top, #3d3219, #2b2311);
+  background-image: -o-linear-gradient(top, #3d3219, #2b2311);
+  background-image: linear-gradient(to bottom, #3d3219, #2b2311);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff322914', endColorstr='#ff2b2311', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3d3219', endColorstr='#ff2b2311', GradientType=0);
   border-color: #2b2311 #2b2311 #000000;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #2b2311;
@@ -6983,18 +6983,18 @@ div.password-suggestions ul {
 .has-switch span.switch-danger {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#241d0e), to(#2b2311));
-  background-image: -webkit-linear-gradient(top, #241d0e, 0%, #2b2311, 100%);
-  background-image: -moz-linear-gradient(top, #241d0e 0%, #2b2311 100%);
-  background-image: linear-gradient(to bottom, #241d0e 0%, #2b2311 100%);
-  background-color: #271f10;
-  background-image: -moz-linear-gradient(top, #241d0e, #2b2311);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#241d0e), to(#2b2311));
-  background-image: -webkit-linear-gradient(top, #241d0e, #2b2311);
-  background-image: -o-linear-gradient(top, #241d0e, #2b2311);
-  background-image: linear-gradient(to bottom, #241d0e, #2b2311);
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#19140a), to(#2b2311));
+  background-image: -webkit-linear-gradient(top, #19140a, 0%, #2b2311, 100%);
+  background-image: -moz-linear-gradient(top, #19140a 0%, #2b2311 100%);
+  background-image: linear-gradient(to bottom, #19140a 0%, #2b2311 100%);
+  background-color: #201a0d;
+  background-image: -moz-linear-gradient(top, #19140a, #2b2311);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#19140a), to(#2b2311));
+  background-image: -webkit-linear-gradient(top, #19140a, #2b2311);
+  background-image: -o-linear-gradient(top, #19140a, #2b2311);
+  background-image: linear-gradient(to bottom, #19140a, #2b2311);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff241d0e', endColorstr='#ff2b2311', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff19140a', endColorstr='#ff2b2311', GradientType=0);
   border-color: #2b2311 #2b2311 #000000;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #2b2311;
@@ -7116,7 +7116,7 @@ div.password-suggestions ul {
 }
 @media (max-width: 767px) {
   .navbar .logo img {
-    height: 150px;
+    height: 100px;
   }
 }
 h2:not(.calendar-event-title),

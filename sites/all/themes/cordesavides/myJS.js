@@ -56,7 +56,7 @@
 						{
 							$('html, body').animate(
 							{
-								scrollTop: block.offset().top,
+								scrollTop: title.offset().top,
 							});
 						};
 					});
