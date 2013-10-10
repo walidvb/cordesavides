@@ -15,11 +15,14 @@
 }
 
 .field-date{
-	font-family: @font-family-second;
-	font-size:  @font-size-large;
-	margin-bottom: 1em;
+	display: none;
+	@media @notmobileyet{
+			font-family: @font-family-second;
+			font-size:  @font-size-large;
+			margin-bottom: 1em;
+			display: block!important;
+	}
 }
-
 .field-slideshow-slide img{
 	width: 100%!important;
 	height: auto;

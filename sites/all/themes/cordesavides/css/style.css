@@ -6452,9 +6452,15 @@ div.password-suggestions ul {
   }
 }
 .field-date {
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 18px;
-  margin-bottom: 1em;
+  display: none;
+}
+@media (min-width: 479px) and (max-width: 979px) {
+  .field-date {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    margin-bottom: 1em;
+    display: block!important;
+  }
 }
 .field-slideshow-slide img {
   width: 100%!important;
