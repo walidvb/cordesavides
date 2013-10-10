@@ -46,7 +46,7 @@
 			}
 			//$(window).once('myJS', function(){
 				$(window).resize(function(){
-					if($(window).width() > 770)
+					if($(window).width() >= 768)
 					{
 						var concernedBlocks = $blockTitle.not('.fcb-title');
 						var block = concernedBlocks.next();

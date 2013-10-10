@@ -9,13 +9,22 @@
 		display: inline-block;
 		.make-xs-column(12);
 		font-size: ceil(@font-size-xxlarge* 1.2);
+		margin-bottom: 0px;
 	}
 
 }
+
+.field-date{
+	font-family: @font-family-second;
+	font-size:  @font-size-large;
+	margin-bottom: 1em;
+}
+
 .field-slideshow-slide img{
 	width: 100%!important;
 	height: auto;
 }
+
 .field-artiste{
 	font-size: @font-size-xxlarge;
 	margin-top: 0px;
@@ -23,6 +32,7 @@
 		display:none;
 	}
 }
+
 
 .artist-details{
 	background-color: @body-bg-2;
@@ -126,7 +136,7 @@
 
 .load-more-loading:after{  
 	content: '';
-	.stripes;
+	.stripes();
 	position: absolute;
 	width: 100%;
 	height: 100%;

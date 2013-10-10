@@ -1,3 +1,4 @@
+
 // Media query variables.
 @mobile:  ~"(max-width: 767px)";
 @tablet:  ~"(min-width: 768px) and (max-width: 979px)";
@@ -32,6 +33,19 @@
 		right: 0;
 		bottom: 0;
 		text-align: right;
+	}
+}
+ .navbar-default .navbar-toggle{
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+	@toggleColor: darken(@body-color, 15%);
+	border-color: @toggleColor;
+	&:hover, &:focus{
+		background-color: @body-bg-2;
+	}
+	.icon-bar{
+		background-color: @toggleColor;
 	}
 }
 
@@ -114,6 +128,6 @@ header .container{
 		}
 	}
 }
-a:focus{
+*:focus{
 	outline: 5px auto @bordeaux; 
 }

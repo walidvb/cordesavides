@@ -1,7 +1,7 @@
+var first = true;
 (function ($) {
 	var pushState = false;
-	var idCounter = 0;
-	
+	var current = 0;
 	Drupal.behaviors.load_more = {
 		attach: function(context, settings){
 			var $settings = settings.load_more;
@@ -14,26 +14,26 @@
 		//---------------------ajax calls
 		var loadFrom = function (nid, triggerIndex){
 			console.log('loadFrom run from ' + nid);
-			var targetContainer = $($targetContainerSelector).addClass('load-more-loading');
-			var ajaxSettings = 
+			
+			if(current != nid)
 			{
-				url: settings.basePath + 'load_more/' + nid,
-				success: function(response)
+				var targetContainer = $($targetContainerSelector).addClass('load-more-loading');
+				var ajaxSettings = 
 				{
+					url: settings.basePath + 'load_more/' + nid,
+					success: function(response)
+					{
 
-					var content = $(response.node_content);
-					console.log('ajax-response', response);
-
-					$('.node', targetContainer).replaceWith(content);
-					var script = content.script;
-					$('head').append(script);
-					$('body').trigger('item-loaded', triggerIndex, response);
-					var title = window.document.title = response.node_title + ' | ' + settings.load_more.site_name;
-					$('h1').html(response.node_title);
+						var content = $(response.node_content);
+						$('.node', targetContainer).replaceWith(content);
+						var script = content.script;
+						$('head').append(script);
+						$('body').trigger('item-loaded', triggerIndex, response);
+						var title = window.document.title = response.node_title + ' | ' + settings.load_more.site_name;
+						$('h1').html(response.node_title);
 					//Attach included scripts
 					Drupal.attachBehaviors(content);
-					console.log('content after attaching behaviors', content);
-
+					current = nid;
 					//Fix easy-social
 					twttr.widgets.load();
 					gapi.plusone.go();
@@ -60,31 +60,43 @@
 
 			$.ajax(ajaxSettings);
 		}
+	}
 
 
+	$trigger.once('load_more', function(){
+		var $this = $(this);
+		$this.addClass('clickable')
+		.bind('click', function(){
+			var nid = $mapping[$this.index()];
+			pushState = true;
+			loadFrom(nid, $this.index());
+		});
+		$this.find('a').bind('click', function(e){
+			e.preventDefault();
+		});
+	});
 
-		$trigger.once('load_more', function(){
-			var $this = $(this);
-			$this.addClass('clickable')
-			.bind('click', function(){
-				var nid = $mapping[$this.index()];
-				pushState = true;
-				loadFrom(nid, $this.index());
-			});
-			$this.find('a').bind('click', function(e){
-				e.preventDefault();
-			});
+	$('body').once('load-more', function(){
+		$(this).bind('load-from', function(e, data){
+			loadFrom(data.nid, data.index);
 		});
 
-		$('body').once('load-more', function(){
-			History.Adapter.bind(window,'statechange',function(){
+		History.Adapter.bind(window,'statechange',function(){
+			console.log('first is ' , first);
+			if(!first)
+			{
+				console.log('will change');
 				var State = History.getState();
 				pushState = false;
-				//loadFrom(State.data.nid, State.data.triggerIndex);
-				console.log("loaded from", State);
-			});
-			History.replaceState({'nid': settings.load_more.nid, }, document.title, window.location.href);
+				loadFrom(State.data.nid, State.data.triggerIndex);
+				console.log("State", State);
+			}
+			first = false;
+
 		});
-	}
+		console.log(settings.load_more.nid)
+		History.replaceState({'nid': settings.load_more.nid, 'triggerIndex': settings.load_more.mapping.indexOf(settings.load_more.nid)}, document.title, window.location.href);
+	});
+}
 }
 }(jQuery))
