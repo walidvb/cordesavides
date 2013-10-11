@@ -35,9 +35,19 @@ var first = true;
 					Drupal.attachBehaviors(content);
 					current = nid;
 					//Fix easy-social
-					twttr.widgets.load();
-					gapi.plusone.go();
-					FB.XFBML.parse()
+					try{
+						twttr.widgets.load();
+					}catch(e){}
+					try
+					{
+						gapi.plusone.go();
+					}catch(e){}
+					try
+					{
+						FB.XFBML.parse()
+					}
+
+					catch(e){}
 
 					if(pushState)
 					{
