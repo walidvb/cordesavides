@@ -32,6 +32,11 @@
 					switchSlide('next');
 				});
 			})
+			//Return to calendar-active-item on artist click
+			$('.field-artiste').addClass('clickable').bind('click', function(){
+				var index = $('.calendar-item-active').index();
+				$('body').trigger('owl-goto', index);
+			});
 			//-------------Content
 			//masonry the facebook albums
 			$('.facebook-album-image img').once('cordesavides', function(){
@@ -70,8 +75,7 @@
 			}
 			else
 			{
-				console.log('clicked on fb');
-				$('.fcb-title', context).trigger('click');
+				//$('.fcb-title', context).trigger('click');
 			}
 			//$(window).once('myJS', function(){
 				$(window).resize(function(){

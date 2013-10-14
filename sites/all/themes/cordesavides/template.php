@@ -8,7 +8,7 @@
  * Bootstrap theme wrapper function for the primary menu links
  */
 function cordesavides_menu_tree__primary(&$variables) {
-  return '<ul class="main-menu menu nav navbar-nav col-md-2 col-sm-6">' . $variables['tree'] . '</ul>';
+  return '<ul class="main-menu menu nav navbar-nav col-md-3 col-lg-2 col-sm-6">' . $variables['tree'] . '</ul>';
 }
 
 //set youtube frame width to 100%

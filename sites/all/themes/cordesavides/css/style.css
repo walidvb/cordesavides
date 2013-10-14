@@ -1,22 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
-@-webkit-keyframes move {
-  from {
-    background-position: 50%;
-  }
-  to {
-    background-position: -50%;
-  }
-}
-@-moz-keyframes move {
-  from {
-    background-position: 0%;
-  }
-  to {
-    background-position: -100%;
-  }
-}
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 article,
 aside,
@@ -268,7 +250,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Arial", Arial, sans-serif;
+  font-family: "futura_ltbook", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #c09f42;
@@ -405,7 +387,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'futura_ltbook', sans-serif;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -5992,7 +5974,7 @@ td.visible-print {
 }
 @-webkit-keyframes move {
   from {
-    background-position: 50%;
+    background-position: 0%;
   }
   to {
     background-position: -50%;
@@ -6003,8 +5985,22 @@ td.visible-print {
     background-position: 0%;
   }
   to {
-    background-position: -100%;
+    background-position: -50%;
   }
+}
+@font-face {
+  font-family: 'futura_ltbold';
+  src: url('../fonts/futuralt-bold-webfont.eot');
+  src: url('../fonts/futuralt-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/futuralt-bold-webfont.woff') format('woff'), url('../fonts/futuralt-bold-webfont.ttf') format('truetype'), url('../fonts/futuralt-bold-webfont.svg#futura_ltbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'futura_ltbook';
+  src: url('../fonts/futuralt-book-webfont.eot');
+  src: url('../fonts/futuralt-book-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/futuralt-book-webfont.woff') format('woff'), url('../fonts/futuralt-book-webfont.ttf') format('truetype'), url('../fonts/futuralt-book-webfont.svg#futura_ltbook') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 html.overlay-open .navbar-fixed-top {
   z-index: 400;
@@ -6277,7 +6273,7 @@ div.password-suggestions ul {
 .main-menu li {
   float: none;
   font-size: 21px;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'futura_ltbook', sans-serif;
 }
 .main-menu li a {
   background-color: #201a0d;
@@ -6303,7 +6299,7 @@ div.password-suggestions ul {
   min-height: 100px;
   padding: 20px 10px 1px;
   font-size: 21px;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'futura_ltbook', sans-serif;
 }
 .calendar-row a,
 .calendar-row span {
@@ -6330,6 +6326,11 @@ div.password-suggestions ul {
   -moz-transition: all 500ms cubic-bezier(0.315, -0.37, 0.285, 1.32);
   -o-transition: all 500ms cubic-bezier(0.315, -0.37, 0.285, 1.32);
   transition: all 500ms cubic-bezier(0.315, -0.37, 0.285, 1.32);
+}
+@media (max-width: 767px) {
+  .owl-item {
+    margin-top: 5px;
+  }
 }
 .owl-item.active {
   -webkit-transform: scale3d(1, 1, 1);
@@ -6368,17 +6369,22 @@ div.password-suggestions ul {
   margin: auto;
 }
 .owl-carousel.open .owl-controls {
-  display: none!important;
+  visibility: hidden;
 }
 .owl-calendar-trigger {
   text-align: center;
-  margin-bottom: 1em;
+  -webkit-transition: all 600s;
+  -moz-transition: all 600s;
+  -o-transition: all 600s;
+  transition: all 600s;
 }
 .owl-calendar-trigger .has-switch {
-  width: 100%;
+  margin-right: 10px;
 }
-.open .owl-calendar-trigger .help {
-  display: none!important;
+@media (max-width: 767px) {
+  .open .owl-calendar-trigger .has-switch {
+    margin-right: 55px;
+  }
 }
 .owl-calendar-trigger .has-switch span,
 .owl-calendar-trigger .has-switch label {
@@ -6392,6 +6398,8 @@ div.password-suggestions ul {
   .owl-next,
   .owl-prev {
     top: -80px;
+    display: none!important;
+    height: 0px;
   }
   .open .owl-next,
   .open .owl-prev {
@@ -6402,23 +6410,16 @@ div.password-suggestions ul {
   height: 40px;
   margin-top: 0px;
 }
+@media (max-width: 767px) {
+  .owl-theme .owl-controls {
+    display: none!important;
+  }
+}
 .owl-theme .owl-controls .owl-prev,
 .owl-theme .owl-controls .owl-next,
 .owl-theme .owl-controls .owl-page {
   opacity: 1!important;
   margin: none;
-}
-.open .owl-theme .owl-controls .owl-prev,
-.open .owl-theme .owl-controls .owl-next,
-.open .owl-theme .owl-controls .owl-page {
-  display: none!important;
-}
-@media (max-width: 767px) {
-  .owl-theme .owl-controls .owl-prev,
-  .owl-theme .owl-controls .owl-next,
-  .owl-theme .owl-controls .owl-page {
-    display: none;
-  }
 }
 .owl-theme .owl-controls .owl-prev {
   border-right-color: #389495 !important;
@@ -6459,7 +6460,7 @@ div.password-suggestions ul {
 }
 @media (min-width: 479px) and (max-width: 767px) {
   .field-date {
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'futura_ltbook', sans-serif;
     font-size: 18px;
     margin-bottom: 1em;
     display: block!important;
@@ -6471,6 +6472,7 @@ div.password-suggestions ul {
 }
 .field-artiste {
   font-size: 40px;
+  font-family: 'futura_ltbold', sans-serif;
   margin-top: 0px;
 }
 @media (max-width: 767px) {
@@ -6493,14 +6495,17 @@ div.password-suggestions ul {
     border-bottom: solid 1px #3c3114;
   }
 }
-.artist-details .field-name-field-music-genre,
+.artist-details .field-music-genre,
+.artist-details .field-name-field-music-genre {
+  float: left;
+}
 .artist-details .field-social {
   display: inline;
 }
 .artist-details .link-to-social {
   float: right;
   background-color: #120e09;
-  padding: 2px 2px;
+  padding: 0px 2px;
 }
 .artist-details .link-to-social .link-to-social-item {
   float: left;
@@ -6526,10 +6531,8 @@ div.password-suggestions ul {
 #cboxClose {
   display: none;
 }
-.field-artiste,
 .field-name-field-music-genre {
-  color: #c09f42;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'futura_ltbook', sans-serif;
 }
 .field-body {
   margin-top: 20px;
@@ -6552,7 +6555,7 @@ div.password-suggestions ul {
   border: none;
 }
 .easy_social_box {
-  height: 116px;
+  height: 120px;
 }
 @media (max-width: 767px) {
   .easy_social_box {
@@ -6560,13 +6563,14 @@ div.password-suggestions ul {
   }
 }
 .h2 {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'futura_ltbook', sans-serif;
   font-weight: 500;
   font-size: 30px;
   background-color: #201a0d;
   padding: 0px 5px;
   margin-bottom: 0.4em;
   line-height: 1.3;
+  font-size: 21px;
 }
 .h2 small {
   font-weight: normal;
@@ -6598,12 +6602,16 @@ div.password-suggestions ul {
   -webkit-transition: background-position 2s;
   -webkit-animation: move 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1) alternate;
   -moz-transition: background-position 2s cubic-bezier(0.075, 0.82, 0.165, 1);
-  -moz-animation: move 8s infinite cubic-bezier(0.645, 0.045, 0.355, 1) alternate;
+  -moz-animation: move 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1) alternate;
   background-size: 50px 50px;
+  z-index: 1500;
   position: absolute;
   width: 100%;
   height: 100%;
   background-repeat: repeat;
+}
+.ds-bottom {
+  display: inline-block;
 }
 .fb_iframe_widget,
 .fb_iframe_widget span,
@@ -7119,15 +7127,25 @@ div.password-suggestions ul {
     height: 100px;
   }
 }
+.main-container img {
+  background-image: linear-gradient(-45deg, transparent 25%, #ac4209 25%, #ac4209 50%, transparent 50%, transparent 75%, #ac4209 75%, #ac4209);
+  -webkit-transition: background-position 2s;
+  -webkit-animation: move 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1) alternate;
+  -moz-transition: background-position 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-animation: move 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1) alternate;
+  background-size: 50px 50px;
+  z-index: 1500;
+}
 h2:not(.calendar-event-title),
 .h2 {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'futura_ltbook', sans-serif;
   font-weight: 500;
   font-size: 30px;
   background-color: #201a0d;
   padding: 0px 5px;
   margin-bottom: 0.4em;
   line-height: 1.3;
+  font-size: 21px;
 }
 h2:not(.calendar-event-title) small,
 .h2 small {
@@ -7175,17 +7193,22 @@ header .container {
     position: relative;
     text-align: center;
   }
+  .footer p {
+    text-align: center;
+  }
 }
 .footer a {
   color: #ac4209;
 }
 @media (max-width: 767px) {
-  .footer a {
+  .footer a,
+  .footer a p {
     display: block;
     text-align: center;
   }
 }
 .footer .credits {
+  text-align: right;
   color: #564623;
 }
 .footer .credits a {

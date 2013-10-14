@@ -30,6 +30,7 @@
 
 .field-artiste{
 	font-size: @font-size-xxlarge;
+	font-family: @font-family-title;
 	margin-top: 0px;
 	@media @mobile{
 		display:none;
@@ -49,13 +50,16 @@
 		.border(bottom);
 	}
 	margin: 15px 0px;
-	.field-name-field-music-genre, .field-social{
+	.field-music-genre, .field-name-field-music-genre{
+		float: left;
+	}
+	.field-social{
 		display: inline;
 	}
 	.link-to-social{
 		float: right;
 		background-color: @body-bg;
-		padding: 2px 2px;
+		padding: 0px 2px;
 		.link-to-social-item{
 			float: left;
 
@@ -85,8 +89,7 @@
 	display: none;
 }
 
-.field-artiste, .field-name-field-music-genre{
-	color: @white;
+.field-name-field-music-genre{
 	font-family: @font-family-second;
 }
 .field-body{
@@ -112,7 +115,7 @@
 }
 
 .easy_social_box{
-	height: 116px;
+	height: 120px;
 	@media @mobile{
 		display: none;
 	}
@@ -146,6 +149,9 @@
 	background-repeat: repeat;
 }
 
+.ds-bottom{
+	display: inline-block;
+}
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget iframe{
 	width: 100% !important;
 }

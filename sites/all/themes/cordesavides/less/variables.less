@@ -13,10 +13,11 @@
 @button-bg: 			#389495;
 @button-color: 			#D0ECEC;
 @button-hover-bg: 		lighten(@button-bg, 20%);
-.h2(){background-color: @body-bg-2;
+.h2(){  background-color: @body-bg-2;
         padding: @padding;
         margin-bottom: 0.4em;
         line-height: 1.3;
+        font-size: @font-size-xlarge;
         }
 
 @nav-link-color: 		#554319;
@@ -32,22 +33,21 @@
 .stripes(){
 	background-image: linear-gradient(-45deg, transparent 25%, @bordeaux 25%, @bordeaux 50%, transparent 50%, transparent 75%, @bordeaux 75%, @bordeaux);
     background-size: 50px 50px;
-    //background-color: @body-bg;
-    //background-position: 50%;
     -webkit-transition: background-position 2s ;
     -webkit-animation: move 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1.000) alternate ;
     -moz-transition: background-position 2s cubic-bezier(0.075, 0.82, 0.165, 1);
-    -moz-animation: move 8s infinite cubic-bezier(0.645, 0.045, 0.355, 1.000) alternate ;
+    -moz-animation: move 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1.000) alternate ;
 	background-size: 50px 50px;
+    z-index: 1500;
 }
 
 @-webkit-keyframes move{
-    from{background-position: 50%;}
+    from{background-position: 0%;}
     to{background-position: -50%;}
 }
 @-moz-keyframes move{
     from{background-position: 0%;}
-    to{background-position: -100%;}
+    to{background-position: -50%;}
 }
 // Global values
 // --------------------------------------------------
@@ -84,8 +84,32 @@
 // Typography
 // -------------------------
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
-@font-family-sans-serif:  "Arial", Arial, sans-serif;
-@font-family-second: 	  'Open Sans Condensed', sans-serif;
+@font-path: '../fonts/';
+@font-face {
+    font-family: 'futura_ltbold';
+    src: url('../fonts/futuralt-bold-webfont.eot');
+    src: url('../fonts/futuralt-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/futuralt-bold-webfont.woff') format('woff'),
+         url('../fonts/futuralt-bold-webfont.ttf') format('truetype'),
+         url('../fonts/futuralt-bold-webfont.svg#futura_ltbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'futura_ltbook';
+    src: url('../fonts/futuralt-book-webfont.eot');
+    src: url('../fonts/futuralt-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/futuralt-book-webfont.woff') format('woff'),
+         url('../fonts/futuralt-book-webfont.ttf') format('truetype'),
+         url('../fonts/futuralt-book-webfont.svg#futura_ltbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-family-sans-serif:  "futura_ltbook", Arial, sans-serif;
+@font-family-title:     'futura_ltbold', sans-serif;
+@font-family-second: 	  'futura_ltbook', sans-serif;
+@font-family-body: @font-family-second;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
@@ -99,7 +123,7 @@
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
 
-@headings-font-family:    @font-family-second;
+@headings-font-family:    @font-family-body;
 @headings-font-weight:    500;
 @headings-line-height:    1.3;
 

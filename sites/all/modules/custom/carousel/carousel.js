@@ -53,13 +53,16 @@
 				$('body').bind('item-loaded', function(event, triggerIndex)
 				{
 						$('.'+className).removeClass(className);
-						$('.owl-item:nth-child(' + (triggerIndex+1) + ')').addClass(className);
-						if(owl.currentSlide != triggerIndex)
+						var elem = $('.owl-item:nth-child(' + (triggerIndex+1) + ')').addClass(className);
+						if(owl.currentSlide != triggerIndex && !elem.hasClass('active'))
 						{
 							owl.goTo(triggerIndex);
 						}
 						$(this).trigger('viewChange', true);
-						$('#allDates, .make-switch').bootstrapSwitch('setState', false);
+						try
+						{
+							$('#allDates, .make-switch').bootstrapSwitch('setState', false);
+						}catch(e){};
 				});
 
 				//-------------Body
@@ -70,10 +73,10 @@
 
 				var $allDates = $('<input id="allDates" type="checkbox"/>')
 					.prependTo($('.owl-carousel'))
-					.wrap('<div class="pull-right col-md-4 col-sm-6 col-xs-12 owl-calendar-trigger" ><div class="make-switch" data-off="danger" data-on-label="o" data-off-label="a"/></div>');
+					.wrap('<div class="pull-right owl-calendar-trigger" ><div class="make-switch" data-off="danger" data-on-label="o" data-off-label="a"/></div>');
 				$('.owl-controls').addClass('col-md-8 col-sm-6')
 					.prependTo($('.owl-carousel'));
-					
+
 				var bigWidth = $('.owl-wrapper').width();
 					//Bind to the switch moving
 					$('body').bind('switch-change', function(e, data){

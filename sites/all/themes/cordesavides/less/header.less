@@ -44,6 +44,11 @@
 }
 .owl-item{
 	.transition(all 500ms cubic-bezier(0.315, -0.370, 0.285, 1.320));
+	@media @mobile{
+		&{
+			margin-top: 5px;
+		}
+	}
 }
 .owl-item.active{
 	-webkit-transform: scale3d(1, 1, 1)
@@ -83,20 +88,24 @@
 		transform: translate3d(0px, 0px, 0px)!important;
 		-moz-transform: translate3d(0px, 0px, 0px)!important;
 		margin: auto;
+
 	}
 	.owl-controls{
-		display: none!important;
+		//display: none!important;
+		visibility: hidden;
 	}
 }
 
 .owl-calendar-trigger{
 	text-align: center;
-	margin-bottom: 1em;
+	.transition(all 600s);
 	.has-switch{
-		width: 100%;
-	}
-	.open & .help{
-		display: none!important;
+		margin-right: 10px;
+		@media @mobile{
+			.open &{ 
+				margin-right: 55px;
+			}
+		}
 	}
 	.has-switch span, .has-switch label{
 		font-family: "fontello";
@@ -112,6 +121,8 @@
 	@media @mobile{
 		&{
 			top: -80px;
+			display: none!important;
+			height: 0px;
 		}
 		.open &{
 			display: none!important;
@@ -121,18 +132,15 @@
 .owl-theme .owl-controls{
 	height: 40px;
 	margin-top: 0px;
+	@media @mobile{
+		&{
+			display: none!important;
+		}
+	}
 	.owl-prev,.owl-next, .owl-page{
 		opacity: 1!important;
 		margin: none;
-		.open & {
-			display: none!important;
 
-		}
-		@media @mobile{
-			&{
-				display: none;
-			}
-		}
 	}
 	.owl-prev{
 		border-right-color: @button-bg!important;

@@ -43,7 +43,7 @@ function facebook_album_fetcher_get_facebook_album_json_data($user_id = "") {
   $users_id = $user_info->id;
   }
   $json_data = facebook_album_fetcher_get_graph_api_json_data('https://graph.facebook.com/' . $users_id . '/albums?width=40&height=60&limit=1000&access_token=' . FAF_ACCESS_TOKEN . '&fields=id,cover_photo,count,link,name,from,created_time,description');
-  dpm($json_data);
+  //dpm($json_data);
   $fb_album_data = facebook_album_fetcher_get_next_album($json_data);
   return $fb_album_data;
 }

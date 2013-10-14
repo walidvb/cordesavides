@@ -6,7 +6,6 @@ var first = true;
 		attach: function(context, settings){
 			var $settings = settings.load_more;
 			var $mapping = $settings.mapping;
-
 			var $view = $('.'+$settings.view_name);
 			var $trigger = $('.'+$settings.item_name);
 			var $targetContainerSelector = '.pane-node-content';
@@ -46,8 +45,11 @@ var first = true;
 					{
 						FB.XFBML.parse()
 					}
-
 					catch(e){}
+					try
+					{
+						_gaq.push(['_trackPageview', '/' + settings.basePath + response.node_path]);
+					}catch(e){}
 
 					if(pushState)
 					{

@@ -1,6 +1,6 @@
 <header id="navbar" role="banner" class="navbar navbar-default">
   <div class="container">
-    <div class="navbar-header  col-md-3 col-sm-6">
+    <div class="navbar-header col-md-3 col-sm-6">
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -10,7 +10,7 @@
       </button>
 
       <?php if (1 || !empty($logo)): ?>
-        <a class="logo pull-left" data-toggle="collapse" data-target=".navbar-collapse" href="#" title="<?php print t('Home'); ?>">
+        <a class="logo pull-left" data-toggle="collapse" data-target=".navbar-collapse" href="<? print $front_page; ?>" title="<?php print t('Home'); ?>">
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
         </a>
       <?php endif; ?>

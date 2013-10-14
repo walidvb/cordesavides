@@ -92,6 +92,9 @@
 		}
 	}
 }
+.main-container img{
+	.stripes();
+}
 h2:not(.calendar-event-title), .h2{
 	.h2();
 }
@@ -113,17 +116,21 @@ header .container{
 			position: relative;
 			text-align: center;
 		}
+		p{
+			text-align: center
+		}
 	}
 	a{
 		color: @bordeaux;
 		@media @mobile{
-			&{
+			&, p{
 				display: block;
 				text-align: center;
 			}
 		}
 	}
 	.credits{
+		text-align: right;
 		color: lighten(@body-bg-2, 15%);
 		a{
 			color: lighten(@body-bg-2, 25%)

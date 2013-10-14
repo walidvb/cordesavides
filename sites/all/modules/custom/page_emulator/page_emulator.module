@@ -23,23 +23,25 @@ function page_emulator_field_formatter_info() {
  * Update the filter operator, ie get past dates if the node viewed is in the past, otherwise get future dates.
  */
 function page_emulator_views_query_alter(&$view, &$query) {
-
   if ($view->name == 'calendar') {
-    $node_viewed_date = $view->args[0];
-    $today = date('Y-m-d');
-    $node_is_past = $node_viewed_date <= $today;
-    if($node_is_past)
+    if(isset($view->args[0]))
     {
-          menu_set_active_item('archive');
-    }
-    else
-    {
-          menu_set_active_item('agenda');
-    }
-    if (isset($query->where[1]) && $node_is_past) {
-      if (trim($query->where[1]['conditions'][2]['field']) == "DATE_FORMAT(field_data_field_date.field_date_value, '%Y-%m-%d\T%H') >= :field_data_field_date_field_date_value") {
-        // Use '>=' condition instead of '='
-        $query->where[1]['conditions'][2]['field'] = "DATE_FORMAT(field_data_field_date.field_date_value, '%Y-%m-%d\T%H') < :field_data_field_date_field_date_value";
+      $node_viewed_date = $view->args[0];
+      $today = date('Y-m-d');
+      $node_is_past = $node_viewed_date <= $today;
+      if($node_is_past)
+      {
+        menu_set_active_item('archive');
+      }
+      else
+      {
+        menu_set_active_item('agenda');
+      }
+      if (isset($query->where[1]) && $node_is_past) {
+        if (trim($query->where[1]['conditions'][2]['field']) == "DATE_FORMAT(field_data_field_date.field_date_value, '%Y-%m-%d\T%H') >= :field_data_field_date_field_date_value") {
+            // Use '>=' condition instead of '='
+          $query->where[1]['conditions'][2]['field'] = "DATE_FORMAT(field_data_field_date.field_date_value, '%Y-%m-%d\T%H') < :field_data_field_date_field_date_value";
+        }
       }
     }
   }
@@ -105,13 +107,13 @@ function _get_nearest_node_page($past = false)
     $time = !$past?'future':'antérieure';
     $return = t('Désolé, il n\'y a pas de date @time', array('@time' => $time));
     return $return;
- }
- $result = $result['node'];
+  }
+  $result = $result['node'];
 
- $nid;
- foreach($result as $node => $content)
- {
-  $nid = $content->nid;
-}
-return menu_execute_active_handler('node/' . $nid, FALSE);
+  $nid;
+  foreach($result as $node => $content)
+  {
+    $nid = $content->nid;
+  }
+  return menu_execute_active_handler('node/' . $nid, FALSE);
 }
