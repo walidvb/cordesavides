@@ -29,6 +29,50 @@ function cordesavides_preprocess_node(&$vars) {
     drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.2.2/mousetrap.min.js', 'external');
   }
 }
+
+function cordesavides_form_element_label($variables) {
+  $element = $variables['element'];
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+ 
+  // If title and required marker are both empty, output no label.
+  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
+    return '';
+  }
+ 
+  // If the element is required, a required marker is appended to the label.
+  $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '';
+ 
+  $title = filter_xss_admin($element['#title']);
+ 
+  $attributes = array();
+  // Style the label as class option to display inline with the element.
+  if ($element['#title_display'] == 'after') {
+    $attributes['class'] = 'option';
+  }
+  // Show label only to screen readers to avoid disruption in visual flows.
+  elseif ($element['#title_display'] == 'invisible') {
+    $attributes['class'] = 'element-invisible';
+  }
+ 
+  if (!empty($element['#id'])) {
+    $attributes['for'] = $element['#id'];
+  }
+ 
+  // Bootstrap wants us to add a class to the label as well.
+  if ($element['#type'] == 'checkbox') {
+    $attributes['class'] = 'checkbox';
+  }
+ 
+  // The leading whitespace helps visually separate fields from inline labels.
+  if (!empty($variables['rendered_element'])) {
+    return ' <label' . drupal_attributes($attributes) . '>' . $variables['rendered_element'] . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
+  }
+  else {
+    return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
+  }
+}
+
 /*
 function cordesavides_form_alter(&$vars){
 
