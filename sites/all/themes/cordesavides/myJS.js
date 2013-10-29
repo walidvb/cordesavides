@@ -31,7 +31,8 @@
 				Mousetrap.bind('right', function(){
 					switchSlide('next');
 				});
-			})
+			});
+			
 			//Return to calendar-active-item on artist click
 			$('.field-artiste').addClass('clickable').bind('click', function(){
 				var index = $('.calendar-item-active').index();
@@ -69,9 +70,14 @@
 			});
 
 			//Collapse all on small screens
-			if($(window).width() < 770)
+			if($(window).width() <= 767)
 			{
 				$blockTitle.trigger('click');
+				setTimeout(function(){
+					$('html, body').animate({
+						scrollTop: $('h1.pane-title').offset().top-40,
+					}, 900);
+				}, 1200);
 			}
 			else
 			{
@@ -79,7 +85,7 @@
 			}
 			//$(window).once('myJS', function(){
 				$(window).resize(function(){
-					if($(window).width() >= 768)
+					if($(window).width() > 767)
 					{
 						var concernedBlocks = $blockTitle.not('.fcb-title');
 						var block = concernedBlocks.next();
