@@ -24,10 +24,8 @@
 						{
 								clearTimeout(timer);
 								timer = setTimeout(function(){
-								console.log('click triggered');
 								var i = activeItem.index();
 								var nid=settings.load_more.mapping[i];
-								console.log('carousel', nid, i);
 								data = {
 									'nid': nid,
 									'index': i,
@@ -67,19 +65,16 @@
 
 				//-------------Body
 
-				var $controls = $('.owl-controls');
-				var showText = 'Afficher toutes les dates';
-				var hideText = 'Retour à la vue normale';
-
-				var $allDates = $('<input id="allDates" type="checkbox"/>')
-					.prependTo($('.owl-carousel'))
-					.wrap('<div class="pull-right owl-calendar-trigger" ><div class="make-switch" data-off="danger" data-on-label="o" data-off-label="a"/></div>');
-				$('.owl-controls').addClass('col-md-8 col-sm-6')
+				var $controls = $('.owl-controls')
+					.addClass('col-md-8 col-sm-6')
 					.prependTo($('.owl-carousel'));
-
 				var bigWidth = $('.owl-wrapper').width();
-					//Bind to the switch moving
+				var $allDates = $('<input id="allDates" type="checkbox" />')
+					.prependTo($('.owl-carousel'))
+					.wrap('<div class="pull-right owl-calendar-trigger" ><div class="make-switch" data-off="danger" data-on-label="o" data-off-label="a"/></div>')
+					//.bootstrapSwitch()
 					$('body').bind('switch-change', function(e, data){
+						console.log('data', data);
 						if(!data.value)
 						{
 							$('body, html').animate(
@@ -105,7 +100,6 @@
 							function(){$('.owl-carousel').addClass('open');
 						});
 						}
-						$('a', $allDates).text(data.value ? hideText : showText);
 					});
 				});
 }

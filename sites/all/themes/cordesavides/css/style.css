@@ -7097,6 +7097,16 @@ iframe {
 .has-switch span.switch-default.active {
   background-color: #000000 \9;
 }
+.popover {
+  background-color: #120e09;
+  border: 1px solid #c09f42;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.popover .arrow {
+  border-top-color: #c09f42;
+}
 .navbar-nav > li.leaf > a {
   padding: 12px 10px;
 }
